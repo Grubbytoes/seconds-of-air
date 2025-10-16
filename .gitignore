@@ -1,0 +1,11 @@
+# Godot 4+ specific ignores
+.godot/
+/android/
+
+# VSCode files
+.vscode/
+
+# Large media files
+*.png
+*.jpg
+*.svg
