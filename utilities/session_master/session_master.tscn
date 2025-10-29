@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://cakgg5sj4dcvp"]
+
+[ext_resource type="Script" uid="uid://baa3u7uhqeagw" path="res://utilities/session_master/session_master.gd" id="1_qcb36"]
+
+[node name="SessionMaster" type="Node"]
+script = ExtResource("1_qcb36")
+
+[node name="TickTimer" type="Timer" parent="."]

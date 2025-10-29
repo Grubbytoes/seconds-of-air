@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://xw6urm5ys8mh"]
 
 [ext_resource type="Texture2D" uid="uid://bfxcrxwq87wja" path="res://media/cursor.png" id="1_43201"]
-[ext_resource type="Script" uid="uid://icrrmaqqxww" path="res://entities/crosshair.gd" id="1_kkuwc"]
+[ext_resource type="Script" uid="uid://icrrmaqqxww" path="res://entities/ui/crosshair/crosshair.gd" id="1_kkuwc"]
 
 [node name="Crosshair" type="Node2D"]
 script = ExtResource("1_kkuwc")

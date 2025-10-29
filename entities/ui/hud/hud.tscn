@@ -1,0 +1,34 @@
+[gd_scene load_steps=2 format=3 uid="uid://io75emuhghfk"]
+
+[ext_resource type="Script" uid="uid://bcd2h8uxpggyu" path="res://entities/ui/hud/hud.gd" id="1_ahh25"]
+
+[node name="HUD" type="Control" node_paths=PackedStringArray("air_label", "score_label")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_ahh25")
+air_label = NodePath("MarginContainer/VBoxContainer/AirLabel")
+score_label = NodePath("MarginContainer/VBoxContainer/ScoreLabel")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="AirLabel" type="Label" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "AIR : 00:00"
+
+[node name="ScoreLabel" type="Label" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "SCORE : 000000"

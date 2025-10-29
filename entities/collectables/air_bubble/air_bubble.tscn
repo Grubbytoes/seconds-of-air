@@ -1,0 +1,8 @@
+[gd_scene load_steps=3 format=3 uid="uid://be3k6a50cjm7g"]
+
+[ext_resource type="PackedScene" uid="uid://disi8167tjktf" path="res://entities/collectables/base_collectable.tscn" id="1_hu5ir"]
+[ext_resource type="Script" uid="uid://beta5abya3jdp" path="res://entities/collectables/air_bubble/air_bubble.gd" id="2_8ld61"]
+
+[node name="AirBubble" instance=ExtResource("1_hu5ir")]
+script = ExtResource("2_8ld61")
+air_value = 5

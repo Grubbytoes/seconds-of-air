@@ -1,0 +1,8 @@
+[gd_scene load_steps=3 format=3 uid="uid://cua5c5rwhgc6s"]
+
+[ext_resource type="PackedScene" uid="uid://disi8167tjktf" path="res://entities/collectables/base_collectable.tscn" id="1_df4fu"]
+[ext_resource type="Script" uid="uid://c5buj6y760ujd" path="res://entities/collectables/score_collectable/score_collectable.gd" id="2_n80bg"]
+
+[node name="BaseCollectable" instance=ExtResource("1_df4fu")]
+script = ExtResource("2_n80bg")
+score_value = 5
