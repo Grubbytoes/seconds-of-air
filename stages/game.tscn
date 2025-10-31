@@ -1,56 +1,11 @@
-[gd_scene load_steps=12 format=4 uid="uid://cyjihvlxxosj"]
+[gd_scene load_steps=3 format=3 uid="uid://cyjihvlxxosj"]
 
 [ext_resource type="Script" uid="uid://c62gmsx55bbvk" path="res://stages/game.gd" id="1_e2o6t"]
-[ext_resource type="PackedScene" uid="uid://cgry3l81jcigo" path="res://entities/characters/player_character/player_character.tscn" id="2_2p4ms"]
 [ext_resource type="PackedScene" uid="uid://io75emuhghfk" path="res://entities/ui/hud/hud.tscn" id="2_tc8sp"]
-[ext_resource type="PackedScene" uid="uid://xw6urm5ys8mh" path="res://entities/ui/crosshair/crosshair.tscn" id="3_4b1jd"]
-[ext_resource type="Texture2D" uid="uid://xv707p6emph6" path="res://media/debug_tiles.png" id="5_48ui8"]
-[ext_resource type="PackedScene" uid="uid://imetp6ioir6d" path="res://entities/characters/enemies/dummy_enemy.tscn" id="6_8a2i1"]
-[ext_resource type="PackedScene" uid="uid://cakgg5sj4dcvp" path="res://utilities/session_master/session_master.tscn" id="8_iq2xw"]
-[ext_resource type="PackedScene" uid="uid://be3k6a50cjm7g" path="res://entities/collectables/air_bubble/air_bubble.tscn" id="8_tc8sp"]
-[ext_resource type="PackedScene" uid="uid://cua5c5rwhgc6s" path="res://entities/collectables/score_collectable/score_collectable.tscn" id="9_iq2xw"]
-
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_8a2i1"]
-texture = ExtResource("5_48ui8")
-0:0/0 = 0
-0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
-
-[sub_resource type="TileSet" id="TileSet_5kqkd"]
-physics_layer_0/collision_layer = 1
-sources/0 = SubResource("TileSetAtlasSource_8a2i1")
 
 [node name="Game" type="Node2D"]
 script = ExtResource("1_e2o6t")
 
-[node name="MainCamera" type="Camera2D" parent="."]
-anchor_mode = 0
-zoom = Vector2(3, 3)
-
-[node name="PlayerCharacter" parent="." instance=ExtResource("2_2p4ms")]
-position = Vector2(108, 81)
-
-[node name="Crosshair" parent="." instance=ExtResource("3_4b1jd")]
-z_index = 10
-
-[node name="TileMapLayer" type="TileMapLayer" parent="."]
-tile_map_data = PackedByteArray("AAAJAAcAAAAAAAAAAAAJAAgAAAAAAAAAAAAJAAkAAAAAAAAAAAAKAAkAAAAAAAAAAAALAAkAAAAAAAAAAAALAAgAAAAAAAAAAAALAAcAAAAAAAAAAAAKAAcAAAAAAAAAAAAKAAgAAAAAAAAAAAA=")
-tile_set = SubResource("TileSet_5kqkd")
-
-[node name="DummyEnemy" parent="." instance=ExtResource("6_8a2i1")]
-position = Vector2(240, 96)
-
-[node name="SessionMaster" parent="." instance=ExtResource("8_iq2xw")]
-initial_air = 30
-
 [node name="UILayer" type="CanvasLayer" parent="."]
 
 [node name="HUD" parent="UILayer" instance=ExtResource("2_tc8sp")]
-
-[node name="AirBubble" parent="." instance=ExtResource("8_tc8sp")]
-position = Vector2(176, 48)
-
-[node name="BaseCollectable" parent="." instance=ExtResource("9_iq2xw")]
-position = Vector2(240, 48)
-
-[connection signal="air_update" from="SessionMaster" to="UILayer/HUD" method="update_air"]
-[connection signal="score_update" from="SessionMaster" to="UILayer/HUD" method="update_score"]

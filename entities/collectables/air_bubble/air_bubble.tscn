@@ -1,8 +1,36 @@
-[gd_scene load_steps=3 format=3 uid="uid://be3k6a50cjm7g"]
+[gd_scene load_steps=7 format=3 uid="uid://be3k6a50cjm7g"]
 
 [ext_resource type="PackedScene" uid="uid://disi8167tjktf" path="res://entities/collectables/base_collectable.tscn" id="1_hu5ir"]
 [ext_resource type="Script" uid="uid://beta5abya3jdp" path="res://entities/collectables/air_bubble/air_bubble.gd" id="2_8ld61"]
+[ext_resource type="Texture2D" uid="uid://lx537481of3a" path="res://media/placeholder_items.png" id="3_gs31a"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1qh4l"]
+atlas = ExtResource("3_gs31a")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pgdgg"]
+atlas = ExtResource("3_gs31a")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_h0pqx"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1qh4l")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pgdgg")
+}],
+"loop": true,
+"name": &"default",
+"speed": 1.9
+}]
 
 [node name="AirBubble" instance=ExtResource("1_hu5ir")]
 script = ExtResource("2_8ld61")
 air_value = 5
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." index="1"]
+sprite_frames = SubResource("SpriteFrames_h0pqx")
+autoplay = "default"
+frame_progress = 0.477394

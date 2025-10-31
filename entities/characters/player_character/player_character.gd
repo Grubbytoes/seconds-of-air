@@ -2,9 +2,10 @@ extends BaseCharacter
 
 const BASE_MOVE_SPEED = 80
 const SHOT_RECOIL_STRENGTH = 20
+const BASE_SHOT_VELOCITY = 300
 
 var facing_dir := Vector2.UP
-var packed_projectile = preload("res://entities/projectiles/player_projectile.tscn")
+var packed_projectile = preload("res://entities/projectiles/player_projectile/player_projectile.tscn")
 
 var _can_shoot := true
 
@@ -39,7 +40,7 @@ func shoot():
 	# shoot projectile
 	var new_projectile = packed_projectile.instantiate() as Projectile
 	add_sibling(new_projectile)
-	new_projectile.launch(position, facing_dir * 400)
+	new_projectile.launch(position, facing_dir * BASE_SHOT_VELOCITY)
 
 	# recoil
 	apply_recoil(-facing_dir * SHOT_RECOIL_STRENGTH * 2, SHOT_RECOIL_STRENGTH)

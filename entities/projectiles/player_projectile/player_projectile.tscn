@@ -1,9 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://cxjdop2x0aoqk"]
 
-[ext_resource type="Script" uid="uid://dja8wr1lyo01b" path="res://entities/projectiles/projectile.gd" id="1_xquaf"]
-
-[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_yow0h"]
-size = Vector2(8, 8)
+[ext_resource type="Script" uid="uid://iukc1gsk8rlm" path="res://entities/projectiles/player_projectile/player_projectile.gd" id="1_drjkp"]
+[ext_resource type="Texture2D" uid="uid://c5uwm16cxymdk" path="res://media/projectiles.png" id="2_fk203"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_xquaf"]
 radius = 4.0
@@ -11,10 +9,13 @@ radius = 4.0
 [node name="PlayerProjectile" type="StaticBody2D"]
 collision_layer = 4
 collision_mask = 9
-script = ExtResource("1_xquaf")
+script = ExtResource("1_drjkp")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture = SubResource("PlaceholderTexture2D_yow0h")
+texture = ExtResource("2_fk203")
+hframes = 3
+frame = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
 shape = SubResource("CircleShape2D_xquaf")

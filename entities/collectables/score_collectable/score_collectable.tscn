@@ -1,8 +1,50 @@
-[gd_scene load_steps=3 format=3 uid="uid://cua5c5rwhgc6s"]
+[gd_scene load_steps=9 format=3 uid="uid://cua5c5rwhgc6s"]
 
 [ext_resource type="PackedScene" uid="uid://disi8167tjktf" path="res://entities/collectables/base_collectable.tscn" id="1_df4fu"]
 [ext_resource type="Script" uid="uid://c5buj6y760ujd" path="res://entities/collectables/score_collectable/score_collectable.gd" id="2_n80bg"]
+[ext_resource type="Texture2D" uid="uid://lx537481of3a" path="res://media/placeholder_items.png" id="3_pjso0"]
 
-[node name="BaseCollectable" instance=ExtResource("1_df4fu")]
+[sub_resource type="AtlasTexture" id="AtlasTexture_pjso0"]
+atlas = ExtResource("3_pjso0")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_oxwwo"]
+atlas = ExtResource("3_pjso0")
+region = Rect2(48, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rrhum"]
+atlas = ExtResource("3_pjso0")
+region = Rect2(64, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mq3o2"]
+atlas = ExtResource("3_pjso0")
+region = Rect2(80, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_mq3o2"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pjso0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_oxwwo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rrhum")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mq3o2")
+}],
+"loop": true,
+"name": &"default",
+"speed": 3.8
+}]
+
+[node name="ScoreCollectable" instance=ExtResource("1_df4fu")]
 script = ExtResource("2_n80bg")
 score_value = 5
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." index="1"]
+sprite_frames = SubResource("SpriteFrames_mq3o2")
+autoplay = "default"
+frame_progress = 0.491991
