@@ -1,7 +1,8 @@
-[gd_scene load_steps=7 format=3 uid="uid://c5v2tp1xneubb"]
+[gd_scene load_steps=8 format=3 uid="uid://c5v2tp1xneubb"]
 
 [ext_resource type="Script" uid="uid://bmtfmfobtp4jk" path="res://entities/characters/enemies/brainmuncher/brainmuncher.gd" id="1_xiio0"]
 [ext_resource type="Texture2D" uid="uid://cooujkiqo7nd5" path="res://media/brainmuncher.png" id="2_16fs7"]
+[ext_resource type="PackedScene" uid="uid://xfrm7125lq2o" path="res://utilities/effects/simple_effects_player.tscn" id="3_16fs7"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_bok7a"]
 atlas = ExtResource("2_16fs7")
@@ -28,7 +29,10 @@ animations = [{
 [sub_resource type="CircleShape2D" id="CircleShape2D_jk6yv"]
 
 [node name="Brainmuncher" type="CharacterBody2D"]
+collision_layer = 8
+collision_mask = 3
 script = ExtResource("1_xiio0")
+health = 3
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_icvhd")
@@ -37,3 +41,5 @@ frame_progress = 0.028431
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_jk6yv")
+
+[node name="SimpleEffectsPlayer" parent="." instance=ExtResource("3_16fs7")]

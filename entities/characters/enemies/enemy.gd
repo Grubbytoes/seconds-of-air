@@ -5,16 +5,18 @@ signal death
 
 @export var health := 1 
 
+@onready var anim: AnimationPlayer = $SimpleEffectsPlayer
 
 func take_hit(damage := 0, knockback := Vector2.ZERO):
 	health -= damage
 
 	apply_recoil(knockback)
+	anim.play("flash")
 	
 	if health <= 0:
 		kill()
 
 
 func kill():
-	death.emit()
-	queue_free()
+	anim.play("fade")
+	anim.animation_finished.connect(queue_free.unbind(1))

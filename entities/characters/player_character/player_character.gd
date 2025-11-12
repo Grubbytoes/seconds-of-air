@@ -1,8 +1,8 @@
 extends BaseCharacter
 
 const BASE_MOVE_SPEED = 80
-const SHOT_RECOIL_STRENGTH = 20
-const BASE_SHOT_VELOCITY = 300
+const SHOT_RECOIL_STRENGTH = 35
+const BASE_SHOT_VELOCITY = 450
 
 var facing_dir := Vector2.UP
 var packed_projectile = preload("res://entities/projectiles/player_projectile/player_projectile.tscn")

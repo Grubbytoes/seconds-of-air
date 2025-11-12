@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://xv707p6emph6"
-path="res://.godot/imported/debug_tiles.png-30cbc48e321f8a435c36dbfa9132fa72.ctex"
+uid="uid://cycmqx11slabs"
+path="res://.godot/imported/stone_tiles.png-060f2d91ae67e13c67a7b1b70ed5ac9a.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://media/debug_tiles.png"
-dest_files=["res://.godot/imported/debug_tiles.png-30cbc48e321f8a435c36dbfa9132fa72.ctex"]
+source_file="res://media/stone_tiles.png"
+dest_files=["res://.godot/imported/stone_tiles.png-060f2d91ae67e13c67a7b1b70ed5ac9a.ctex"]
 
 [params]
 

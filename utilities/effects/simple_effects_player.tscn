@@ -1,0 +1,60 @@
+[gd_scene load_steps=5 format=3 uid="uid://xfrm7125lq2o"]
+
+[sub_resource type="Animation" id="Animation_16fs7"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_bok7a"]
+resource_name = "death"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(2, 1),
+"update": 0,
+"values": [Color(100, 100, 100, 1), Color(100, 100, 100, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_xiio0"]
+resource_name = "hit"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(2, 1),
+"update": 0,
+"values": [Color(25, 25, 25, 1), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_bok7a"]
+_data = {
+&"RESET": SubResource("Animation_16fs7"),
+&"fade": SubResource("Animation_bok7a"),
+&"flash": SubResource("Animation_xiio0")
+}
+
+[node name="SimpleEffectsPlayer" type="AnimationPlayer"]
+libraries = {
+&"": SubResource("AnimationLibrary_bok7a")
+}

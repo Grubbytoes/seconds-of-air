@@ -4,5 +4,5 @@ extends BaseCollectable
 
 
 func on_pickup():
+	super.on_pickup()
 	GlobalEvents.add_air.emit(air_value)
-	queue_free()

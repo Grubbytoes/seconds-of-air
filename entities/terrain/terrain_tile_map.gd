@@ -12,5 +12,4 @@ func place_tile(coords: Vector2i, id := "stone") -> bool:
 		return false
 	
 	set_cell(coords, tile_id[0], tile_id[1])
-	print("bop")
 	return true
