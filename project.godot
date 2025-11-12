@@ -32,6 +32,10 @@ window/stretch/mode="viewport"
 
 project/assembly_name="Seconds of Air"
 
+[global_group]
+
+player="player character(s) body"
+
 [input]
 
 thrust={

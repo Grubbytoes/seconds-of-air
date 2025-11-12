@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://b7ubsu4vtw8y"]
+[gd_scene load_steps=11 format=3 uid="uid://b7ubsu4vtw8y"]
 
 [ext_resource type="Script" uid="uid://p2yxsjy362o8" path="res://entities/characters/enemies/enemy.gd" id="1_tw0lv"]
 [ext_resource type="Texture2D" uid="uid://bkaq4o0x3dhog" path="res://media/slugbug.png" id="2_8jk2g"]
@@ -44,6 +44,9 @@ animations = [{
 radius = 8.0
 height = 20.0
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_pvlrv"]
+radius = 11.0
+
 [node name="Slugbug" type="CharacterBody2D"]
 collision_layer = 8
 collision_mask = 3
@@ -63,3 +66,14 @@ rotation = 1.5708
 shape = SubResource("CapsuleShape2D_qjunl")
 
 [node name="SimpleEffectsPlayer" parent="." instance=ExtResource("3_pvlrv")]
+
+[node name="HazardArea" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HazardArea"]
+position = Vector2(0, 4)
+shape = SubResource("CircleShape2D_pvlrv")
+debug_color = Color(0.959667, 0, 0.519246, 0)
+
+[connection signal="body_entered" from="HazardArea" to="." method="on_contact"]

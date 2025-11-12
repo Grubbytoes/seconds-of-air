@@ -10,6 +10,6 @@ func contact(c: KinematicCollision2D):
 		collider.erase_cell(tile_position)
 	
 	if collider is Enemy:
-		collider.take_hit(1, -c.get_normal() * 40)
+		collider.take_hit(1, -c.get_normal() * Enemy.BASE_KNOCKBACK)
 	
 	destroy()

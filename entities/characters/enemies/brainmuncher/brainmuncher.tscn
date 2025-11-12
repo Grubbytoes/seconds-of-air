@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://c5v2tp1xneubb"]
+[gd_scene load_steps=9 format=3 uid="uid://c5v2tp1xneubb"]
 
 [ext_resource type="Script" uid="uid://bmtfmfobtp4jk" path="res://entities/characters/enemies/brainmuncher/brainmuncher.gd" id="1_xiio0"]
 [ext_resource type="Texture2D" uid="uid://cooujkiqo7nd5" path="res://media/brainmuncher.png" id="2_16fs7"]
@@ -28,6 +28,9 @@ animations = [{
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_jk6yv"]
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_16fs7"]
+radius = 11.0
+
 [node name="Brainmuncher" type="CharacterBody2D"]
 collision_layer = 8
 collision_mask = 3
@@ -43,3 +46,13 @@ frame_progress = 0.028431
 shape = SubResource("CircleShape2D_jk6yv")
 
 [node name="SimpleEffectsPlayer" parent="." instance=ExtResource("3_16fs7")]
+
+[node name="HazardArea" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HazardArea"]
+shape = SubResource("CircleShape2D_16fs7")
+debug_color = Color(0.959667, 0, 0.519246, 0)
+
+[connection signal="body_entered" from="HazardArea" to="." method="on_contact"]

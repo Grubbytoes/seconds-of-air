@@ -2,8 +2,8 @@ class_name BaseCharacter
 extends CharacterBody2D
 
 # Base drag applied to characters
-const BASE_DRAG = 40
-
+const BASE_DRAG = 100
+const BASE_KNOCKBACK = 80
 const BASE_MAX_RECOIL = 100
 
 ## The component of character velocity equivalent to this characters intended direction of movement
@@ -26,6 +26,11 @@ func move_character(extra_components : Array[Vector2] = []) -> bool:
 		velocity += c
 
 	return move_and_slide()
+
+
+## does nothing by default, made to be overridden
+func take_hit(_damage := 0, _knockback := Vector2.ZERO):
+	pass
 
 
 ## Applies drag
