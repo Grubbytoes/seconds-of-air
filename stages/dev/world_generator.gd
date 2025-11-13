@@ -44,4 +44,4 @@ func build_chunk(chunk_data: IntArray2d, chunk_no := 0):
 		var v = chunk_data.getv(c)
 		if v == 1:
 			print("boop")
-			target.place_tile(c + offset)
+			target.place_destructible_tile(c + offset)
