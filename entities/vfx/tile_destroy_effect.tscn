@@ -61,7 +61,6 @@ centered = false
 
 [node name="GPUParticles2D" type="GPUParticles2D" parent="."]
 position = Vector2(8, 8)
-emitting = false
 amount = 4
 texture = SubResource("AtlasTexture_aytmy")
 lifetime = 0.5
