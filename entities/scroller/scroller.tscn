@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://bvqtn58j0hpn8"]
+
+[ext_resource type="Script" uid="uid://uleqawk6odw3" path="res://entities/scroller/scroller.gd" id="1_kcmbr"]
+[ext_resource type="PackedScene" uid="uid://c6jh8y2f5figg" path="res://entities/ui/camera/main_camera.tscn" id="2_t4c0m"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_ierym"]
+normal = Vector2(0, 1)
+
+[node name="Scroller" type="Node2D"]
+script = ExtResource("1_kcmbr")
+scroll_speed = 16
+
+[node name="Upper boundry" type="StaticBody2D" parent="."]
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Upper boundry"]
+shape = SubResource("WorldBoundaryShape2D_ierym")
+
+[node name="MainCamera" parent="." instance=ExtResource("2_t4c0m")]
