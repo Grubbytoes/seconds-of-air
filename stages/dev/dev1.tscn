@@ -1,21 +1,12 @@
-[gd_scene load_steps=6 format=3 uid="uid://bv74ynagkpp2r"]
+[gd_scene load_steps=2 format=3 uid="uid://bv74ynagkpp2r"]
 
-[ext_resource type="PackedScene" uid="uid://d24iimo65b3gh" path="res://entities/terrain/terrain_tile_map.tscn" id="1_71ojy"]
-[ext_resource type="Texture2D" uid="uid://xv707p6emph6" path="res://media/debug_tiles.png" id="2_6hoqe"]
-[ext_resource type="Script" uid="uid://dp0min61eh0r" path="res://stages/dev/world_generator.gd" id="2_x0jrx"]
-
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_w7h2e"]
-texture = ExtResource("2_6hoqe")
-0:0/0 = 0
-
-[sub_resource type="TileSet" id="TileSet_clp0l"]
-sources/0 = SubResource("TileSetAtlasSource_w7h2e")
+[ext_resource type="PackedScene" uid="uid://cgry3l81jcigo" path="res://entities/characters/player_character/player_character.tscn" id="1_wwanc"]
 
 [node name="Dev1" type="Node2D"]
 
-[node name="TerrainTileMap" parent="." instance=ExtResource("1_71ojy")]
-tile_set = SubResource("TileSet_clp0l")
+[node name="PlayerCharacter" parent="." instance=ExtResource("1_wwanc")]
+position = Vector2(196, 65)
 
-[node name="WorldGenerator" type="Node" parent="." node_paths=PackedStringArray("target")]
-script = ExtResource("2_x0jrx")
-target = NodePath("../TerrainTileMap")
+[node name="Camera2D" type="Camera2D" parent="."]
+anchor_mode = 0
+zoom = Vector2(3, 3)
