@@ -14,4 +14,5 @@ position = Vector2(192, 112)
 
 [node name="TerrainTileMap" parent="." instance=ExtResource("3_gky2f")]
 
-[node name="Scroller" parent="." instance=ExtResource("5_1auff")]
+[node name="Scroller" parent="." node_paths=PackedStringArray("char") instance=ExtResource("5_1auff")]
+char = NodePath("../PlayerCharacter")

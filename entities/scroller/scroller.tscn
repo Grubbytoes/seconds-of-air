@@ -11,7 +11,6 @@ size = Vector2(400, 32)
 
 [node name="Scroller" type="Node2D"]
 script = ExtResource("1_kcmbr")
-scroll_speed = 16
 
 [node name="UpperBoundry" type="StaticBody2D" parent="."]
 collision_layer = 2
@@ -34,13 +33,26 @@ shape = SubResource("WorldBoundaryShape2D_ierym")
 [node name="MainCamera" parent="." instance=ExtResource("2_t4c0m")]
 
 [node name="BottomArea" type="Area2D" parent="."]
-position = Vector2(193, 204)
+position = Vector2(193, 200)
 collision_layer = 2
 collision_mask = 2
 metadata/_edit_group_ = true
+metadata/_edit_lock_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="BottomArea"]
 shape = SubResource("RectangleShape2D_t4c0m")
 
-[connection signal="body_entered" from="BottomArea" to="." method="bottom_boundry_body_entered"]
-[connection signal="body_exited" from="BottomArea" to="." method="bottom_boundry_body_exited"]
+[node name="TopArea" type="Area2D" parent="."]
+position = Vector2(192, 16)
+collision_layer = 2
+collision_mask = 2
+metadata/_edit_group_ = true
+metadata/_edit_lock_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TopArea"]
+shape = SubResource("RectangleShape2D_t4c0m")
+
+[connection signal="body_entered" from="BottomArea" to="." method="bottom_area_entered"]
+[connection signal="body_exited" from="BottomArea" to="." method="bottom_area_exited"]
+[connection signal="body_entered" from="TopArea" to="." method="top_area_entered"]
+[connection signal="body_exited" from="TopArea" to="." method="top_area_exited"]

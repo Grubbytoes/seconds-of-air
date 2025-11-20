@@ -1,7 +1,7 @@
 class_name Game
 extends Node2D
 
-var loaded_levels := {
+static var loaded_levels := {
 	"main": preload("res://stages/levels/main_level.tscn"),
 	"premade": preload("res://stages/levels/premade_level.tscn"),
 	"dev": preload("res://stages/dev/dev1.tscn")
@@ -12,7 +12,7 @@ var currentLevel: Node2D
 
 
 func _ready():
-	load_level("premade")
+	load_level("main")
 
 
 func load_level(level_name: String):

@@ -3,7 +3,7 @@ extends BaseCharacter
 signal damage_taken
 
 const MOVE_SPEED = 100
-const MOVE_ACCELERATION = 250
+const MOVE_ACCELERATION = 150
 const SHOT_RECOIL_STRENGTH = 10
 const SHOT_VELOCITY = 450
 
@@ -11,7 +11,7 @@ var facing_dir := Vector2.UP
 var packed_projectile = preload("res://entities/projectiles/player_projectile/player_projectile.tscn")
 var currently_shooting = false
 
-var _can_shoot := true
+var _shot_ready := true
 var _can_move := true
 
 
@@ -23,7 +23,7 @@ func _physics_process(delta):
 	var did_shoot = action_shoot()
 	
 	if !did_move:
-		apply_drag(delta)
+		apply_drag(delta, .125)
 
 	move_and_slide()
 
@@ -63,13 +63,12 @@ func action_move(delta_time: float) -> bool:
 
 
 func action_shoot() -> bool:
+	currently_shooting = Input.is_action_pressed("action_1")
+
 	# check for shot
-	if Input.is_action_pressed("action_1") and _can_shoot:
+	if _shot_ready and currently_shooting:
 		shoot()
-		currently_shooting = true
 		return true
-	elif Input.is_action_just_released("action_1"):
-		currently_shooting = false
 	
 	return false
 
@@ -83,9 +82,9 @@ func shoot():
 	new_projectile.launch(position, facing_dir * SHOT_VELOCITY)
 
 	# start cooldown
-	_can_shoot = false
+	_shot_ready = false
 	shot_timer.start()
 
 
 func _shot_timer_timeout():
-	_can_shoot = true
+	_shot_ready = true
