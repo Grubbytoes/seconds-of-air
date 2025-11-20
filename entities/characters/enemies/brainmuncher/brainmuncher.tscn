@@ -1,0 +1,58 @@
+[gd_scene load_steps=9 format=3 uid="uid://c5v2tp1xneubb"]
+
+[ext_resource type="Script" uid="uid://bmtfmfobtp4jk" path="res://entities/characters/enemies/brainmuncher/brainmuncher.gd" id="1_xiio0"]
+[ext_resource type="Texture2D" uid="uid://cooujkiqo7nd5" path="res://media/brainmuncher.png" id="2_16fs7"]
+[ext_resource type="PackedScene" uid="uid://xfrm7125lq2o" path="res://utilities/effects/simple_effects_player.tscn" id="3_16fs7"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bok7a"]
+atlas = ExtResource("2_16fs7")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_j83j0"]
+atlas = ExtResource("2_16fs7")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_icvhd"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bok7a")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_j83j0")
+}],
+"loop": true,
+"name": &"default",
+"speed": 1.9
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_jk6yv"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_16fs7"]
+radius = 11.0
+
+[node name="Brainmuncher" type="CharacterBody2D"]
+collision_layer = 8
+collision_mask = 3
+script = ExtResource("1_xiio0")
+health = 3
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_icvhd")
+autoplay = "default"
+frame_progress = 0.028431
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_jk6yv")
+
+[node name="SimpleEffectsPlayer" parent="." instance=ExtResource("3_16fs7")]
+
+[node name="HazardArea" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HazardArea"]
+shape = SubResource("CircleShape2D_16fs7")
+debug_color = Color(0.959667, 0, 0.519246, 0)
+
+[connection signal="body_entered" from="HazardArea" to="." method="on_contact"]

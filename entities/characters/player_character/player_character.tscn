@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://cgry3l81jcigo"]
+[gd_scene load_steps=7 format=3 uid="uid://cgry3l81jcigo"]
 
 [ext_resource type="Script" uid="uid://dxcpaohd86cge" path="res://entities/characters/player_character/player_character.gd" id="1_5e5vb"]
 [ext_resource type="Texture2D" uid="uid://cdeh3xa7gswec" path="res://media/placeholder_character.png" id="1_q6prm"]
 [ext_resource type="Script" uid="uid://do2gepia3gqgk" path="res://entities/characters/player_character/pickup_area.gd" id="3_0ve86"]
+[ext_resource type="PackedScene" uid="uid://xfrm7125lq2o" path="res://utilities/effects/simple_effects_player.tscn" id="4_rkrak"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4b1jd"]
 size = Vector2(14, 14)
@@ -10,10 +11,10 @@ size = Vector2(14, 14)
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_bfe2j"]
 height = 22.0
 
-[node name="PlayerCharacter" type="CharacterBody2D"]
+[node name="PlayerCharacter" type="CharacterBody2D" groups=["player"]]
 z_index = 1
 collision_layer = 2
-collision_mask = 9
+collision_mask = 11
 script = ExtResource("1_5e5vb")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
@@ -34,5 +35,8 @@ script = ExtResource("3_0ve86")
 shape = SubResource("CapsuleShape2D_bfe2j")
 debug_color = Color(0.977959, 0, 0.403737, 0)
 
+[node name="SimpleEffectsPlayer" parent="." instance=ExtResource("4_rkrak")]
+
+[connection signal="damage_taken" from="." to="SimpleEffectsPlayer" method="play" binds= [&"flash"]]
 [connection signal="timeout" from="ShotTimer" to="." method="_shot_timer_timeout"]
 [connection signal="body_entered" from="PickupArea" to="PickupArea" method="body_entered_area"]

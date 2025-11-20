@@ -26,17 +26,7 @@ func launch(launch_position := Vector2.ZERO, launch_velocity := Vector2.ZERO) ->
 	lifetime_timer.timeout.connect(destroy)
 
 
-func contact(c: KinematicCollision2D):
-	var collider = c.get_collider()
-
-	if collider is TileMapLayer:
-		var tile_position = collider.local_to_map(c.get_position() - c.get_normal() * 4)
-		print(tile_position)
-		collider.erase_cell(tile_position)
-	
-	if collider is Enemy:
-		collider.take_hit(1, -c.get_normal() * 40)
-
+func contact(_c: KinematicCollision2D):
 	destroy()
 
 

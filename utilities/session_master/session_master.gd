@@ -58,6 +58,5 @@ func tick():
 
 
 func end_game():
-	print("Game over, from the game master!!")
 	tick_timer.queue_free()
 	session_ended.emit()

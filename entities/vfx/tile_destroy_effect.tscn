@@ -1,0 +1,73 @@
+[gd_scene load_steps=10 format=3 uid="uid://ufcgnfu6hovp"]
+
+[ext_resource type="Texture2D" uid="uid://bnixa23um11xa" path="res://media/tile_destroyed.png" id="1_2cr8b"]
+[ext_resource type="Texture2D" uid="uid://41dvwr240gca" path="res://media/particles.png" id="2_ct8gq"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_54etv"]
+atlas = ExtResource("1_2cr8b")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4jbru"]
+atlas = ExtResource("1_2cr8b")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1v4c0"]
+atlas = ExtResource("1_2cr8b")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6a0rv"]
+atlas = ExtResource("1_2cr8b")
+region = Rect2(48, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_3ehw7"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_54etv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4jbru")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1v4c0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6a0rv")
+}, {
+"duration": 1.0,
+"texture": null
+}],
+"loop": false,
+"name": &"destroy",
+"speed": 20.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_aytmy"]
+atlas = ExtResource("2_ct8gq")
+region = Rect2(0, 0, 8, 8)
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_q2d2t"]
+particle_flag_disable_z = true
+spread = 180.0
+initial_velocity_min = 40.0
+initial_velocity_max = 60.0
+gravity = Vector3(0, 0, 0)
+
+[node name="TileDestroyEffect" type="AnimatedSprite2D"]
+sprite_frames = SubResource("SpriteFrames_3ehw7")
+animation = &"destroy"
+autoplay = "destroy"
+centered = false
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+position = Vector2(8, 8)
+emitting = false
+amount = 4
+texture = SubResource("AtlasTexture_aytmy")
+lifetime = 0.5
+one_shot = true
+explosiveness = 1.0
+process_material = SubResource("ParticleProcessMaterial_q2d2t")
+
+[connection signal="animation_finished" from="." to="." method="queue_free" flags=6]
+[connection signal="ready" from="." to="GPUParticles2D" method="set_emitting" binds= [true]]
