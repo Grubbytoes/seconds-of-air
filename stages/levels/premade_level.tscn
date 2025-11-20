@@ -12,6 +12,7 @@
 
 [node name="Scroller" parent="." node_paths=PackedStringArray("char") instance=ExtResource("2_iaslq")]
 char = NodePath("../PlayerCharacter")
+scroll_speed = 8
 metadata/_edit_lock_ = true
 
 [node name="PlayerCharacter" parent="." instance=ExtResource("1_el5fa")]
@@ -77,6 +78,10 @@ position = Vector2(352, 144)
 [node name="UILayer" type="CanvasLayer" parent="."]
 
 [node name="HUD" parent="UILayer" instance=ExtResource("7_dd4cx")]
+offset_left = 1.0
+offset_top = 1.0
+offset_right = 1.0
+offset_bottom = 1.0
 
 [connection signal="air_update" from="SessionMaster" to="UILayer/HUD" method="update_air"]
 [connection signal="score_update" from="SessionMaster" to="UILayer/HUD" method="update_score"]

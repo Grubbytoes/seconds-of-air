@@ -3,7 +3,8 @@ extends Node2D
 
 var loaded_levels := {
 	"main": preload("res://stages/levels/main_level.tscn"),
-	"premade": preload("res://stages/levels/premade_level.tscn")
+	"premade": preload("res://stages/levels/premade_level.tscn"),
+	"dev": preload("res://stages/dev/dev1.tscn")
 }
 var currentLevel: Node2D
 

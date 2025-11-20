@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=3 uid="uid://bvqtn58j0hpn8"]
+[gd_scene load_steps=5 format=3 uid="uid://bvqtn58j0hpn8"]
 
 [ext_resource type="Script" uid="uid://uleqawk6odw3" path="res://entities/scroller/scroller.gd" id="1_kcmbr"]
 [ext_resource type="PackedScene" uid="uid://c6jh8y2f5figg" path="res://entities/ui/camera/main_camera.tscn" id="2_t4c0m"]
@@ -6,15 +6,41 @@
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_ierym"]
 normal = Vector2(0, 1)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_t4c0m"]
+size = Vector2(400, 32)
+
 [node name="Scroller" type="Node2D"]
 script = ExtResource("1_kcmbr")
 scroll_speed = 16
 
-[node name="Upper boundry" type="StaticBody2D" parent="."]
+[node name="UpperBoundry" type="StaticBody2D" parent="."]
 collision_layer = 2
 collision_mask = 2
+metadata/_edit_group_ = true
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Upper boundry"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="UpperBoundry"]
+shape = SubResource("WorldBoundaryShape2D_ierym")
+
+[node name="BottomBoundry" type="StaticBody2D" parent="."]
+position = Vector2(4, 224)
+rotation = 3.14159
+collision_layer = 2
+collision_mask = 2
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BottomBoundry"]
 shape = SubResource("WorldBoundaryShape2D_ierym")
 
 [node name="MainCamera" parent="." instance=ExtResource("2_t4c0m")]
+
+[node name="BottomArea" type="Area2D" parent="."]
+position = Vector2(193, 204)
+collision_layer = 2
+collision_mask = 2
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BottomArea"]
+shape = SubResource("RectangleShape2D_t4c0m")
+
+[connection signal="body_entered" from="BottomArea" to="." method="bottom_boundry_body_entered"]
+[connection signal="body_exited" from="BottomArea" to="." method="bottom_boundry_body_exited"]
