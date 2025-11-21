@@ -74,8 +74,6 @@ func action_shoot() -> bool:
 
 
 func shoot():
-	print("pew: %s" % facing_dir)
-
 	# shoot projectile
 	var new_projectile = packed_projectile.instantiate() as Projectile
 	add_sibling(new_projectile)

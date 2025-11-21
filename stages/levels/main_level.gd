@@ -4,11 +4,11 @@ extends Node2D
 
 
 func _ready():
-	build_chunk()
+	var chunk := ChunkLoader.chunk_from_data(0, Chunk.Opening.CENTER)
+	build_chunk(chunk)
 
 
-func build_chunk():
-	var chunk := ChunkReader.read_chunk_file("test_chunk.json")
+func build_chunk(chunk: Chunk):
 	var v := Vector2i.UP
 	var solid_tiles: Array[Vector2i] = []
 	var solid_tiles_ptr = 0
@@ -16,15 +16,6 @@ func build_chunk():
 	solid_tiles.resize(chunk.solid_terrain_count)
 
 	for row in chunk.rows:
-		# if o == Chunk.ChunkObject.SOLID_TILE:
-		# 	solid_tiles[solid_tiles_ptr] = v
-		# 	solid_tiles_ptr += 1
-		# elif o != Chunk.ChunkObject.EMPTY:
-		# 	ter.place_destructible_tile(v)
-
-		# print(v)
-		# v = increment_vector(v)
-		# getting ready for the next row
 		v.y += 1
 		v.x = 0
 		if chunk.flipped_h:
