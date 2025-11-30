@@ -9,7 +9,6 @@ var packed_destroy_effect := preload("res://entities/vfx/tile_destroy_effect.tsc
 
 
 func place_destructible_tile(coords: Vector2i, id := "grey") -> bool:
-	push_warning("Use of deprecated method TerrainTileMap.place_destructible_tile")
 
 	var tile_id = TILE_IDS.get(id) as Array
 

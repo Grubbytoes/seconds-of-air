@@ -51,3 +51,7 @@ func load(d: Dictionary) -> bool:
 		rows.append(new_row)		
 	
 	return true
+
+
+func flip_h():
+	flipped_h = !flipped_h

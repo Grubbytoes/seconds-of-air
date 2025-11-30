@@ -15,7 +15,7 @@ func apply_drag(delta_time: float, strength := 1.0):
 	if velocity.length() <= 2:
 		velocity = Vector2.ZERO
 	else:
-		velocity = velocity.lerp(Vector2.ZERO, delta_time)
+		velocity = velocity.lerp(Vector2.ZERO, delta_time * strength)
 
 
 ## Applies an impulse to the recoil component

@@ -1,6 +1,6 @@
 [gd_scene load_steps=11 format=3 uid="uid://b7ubsu4vtw8y"]
 
-[ext_resource type="Script" uid="uid://p2yxsjy362o8" path="res://entities/characters/enemies/enemy.gd" id="1_tw0lv"]
+[ext_resource type="Script" uid="uid://bkba56vnrblax" path="res://entities/characters/enemies/slugbug/slugbug.gd" id="1_pvlrv"]
 [ext_resource type="Texture2D" uid="uid://bkaq4o0x3dhog" path="res://media/slugbug.png" id="2_8jk2g"]
 [ext_resource type="PackedScene" uid="uid://xfrm7125lq2o" path="res://utilities/effects/simple_effects_player.tscn" id="3_pvlrv"]
 
@@ -48,9 +48,10 @@ height = 20.0
 radius = 11.0
 
 [node name="Slugbug" type="CharacterBody2D"]
+position = Vector2(0, 1)
 collision_layer = 8
 collision_mask = 3
-script = ExtResource("1_tw0lv")
+script = ExtResource("1_pvlrv")
 health = 3
 metadata/_custom_type_script = "uid://p2yxsjy362o8"
 
@@ -75,5 +76,11 @@ collision_mask = 2
 position = Vector2(0, 4)
 shape = SubResource("CircleShape2D_pvlrv")
 debug_color = Color(0.959667, 0, 0.519246, 0)
+
+[node name="SightRay" type="RayCast2D" parent="."]
+target_position = Vector2(0, 24)
+collision_mask = 265
+
+[node name="StunTimer" type="Timer" parent="."]
 
 [connection signal="body_entered" from="HazardArea" to="." method="on_contact"]

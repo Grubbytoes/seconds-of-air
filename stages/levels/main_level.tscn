@@ -1,13 +1,13 @@
-[gd_scene load_steps=5 format=3 uid="uid://vm8hq88hq8jr"]
+[gd_scene load_steps=6 format=3 uid="uid://vm8hq88hq8jr"]
 
 [ext_resource type="PackedScene" uid="uid://cgry3l81jcigo" path="res://entities/characters/player_character/player_character.tscn" id="1_acn0u"]
 [ext_resource type="Script" uid="uid://k3udx8siw08h" path="res://stages/levels/main_level.gd" id="1_ierym"]
 [ext_resource type="PackedScene" uid="uid://d24iimo65b3gh" path="res://entities/terrain/terrain_tile_map.tscn" id="3_gky2f"]
+[ext_resource type="Script" uid="uid://b3ojbimvxhv1f" path="res://utilities/chunks/chunk_builder.gd" id="5_0uelv"]
 [ext_resource type="PackedScene" uid="uid://bvqtn58j0hpn8" path="res://entities/scroller/scroller.tscn" id="5_1auff"]
 
-[node name="MainLevel" type="Node2D" node_paths=PackedStringArray("ter")]
+[node name="MainLevel" type="Node2D"]
 script = ExtResource("1_ierym")
-ter = NodePath("TerrainTileMap")
 
 [node name="PlayerCharacter" parent="." instance=ExtResource("1_acn0u")]
 position = Vector2(192, 112)
@@ -16,3 +16,12 @@ position = Vector2(192, 112)
 
 [node name="Scroller" parent="." node_paths=PackedStringArray("char") instance=ExtResource("5_1auff")]
 char = NodePath("../PlayerCharacter")
+dynamic_scroll_speed = false
+
+[node name="ChunkBuilder" type="Node" parent="." node_paths=PackedStringArray("ter")]
+script = ExtResource("5_0uelv")
+ter = NodePath("../TerrainTileMap")
+initial_offset = 8
+metadata/_custom_type_script = "uid://b3ojbimvxhv1f"
+
+[connection signal="scrolled_chunk_length" from="Scroller" to="ChunkBuilder" method="ready_next_chunk"]

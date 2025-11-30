@@ -1,35 +1,23 @@
 class_name ChunkLoader
 extends Object
 
+## Responsible for loading the JSON data used to build chunks, 
+## then instancing chunk objects based on them on request
 
-const CHUNKS_PATH = "res://utilities/chunks/data"
+const CHUNKS_PATH := "res://utilities/chunks/data"
 
 
 # The bank of chunks as JSON data
-static var _chunk_data := {
-	Chunk.Opening.LEFT: [
-		# preload("%s/test_chunk.json" % CHUNKS_PATH)
-	],
-	Chunk.Opening.CENTER: [
-		preload("%s/test_chunk.json" % CHUNKS_PATH)
-	],
-	Chunk.Opening.RIGHT: [
-		# preload("%s/test_chunk.json" % CHUNKS_PATH)
-	],
-}
+static var _chunk_json_data: Array[JSON] = [
+	preload(CHUNKS_PATH + "/soa-chunks1.json"),
+	preload(CHUNKS_PATH + "/soa-chunks2.json"),
+	preload(CHUNKS_PATH + "/soa-chunks3.json")
+]
 
-static func random_chunk_by_opening(opening := Chunk.Opening.CENTER):
-	var r = (randi() % 2 == 0)
 
-	if r and opening == Chunk.Opening.LEFT:
-		opening = Chunk.Opening.RIGHT
-	elif r and opening == Chunk.Opening.RIGHT:
-		opening = Chunk.Opening.LEFT
-	
-	var chunk_json = _chunk_data[opening].pick_random()
-	var new_chunk = build_chunk_from_json(chunk_json)
-	new_chunk.flipped_h = r
-	return new_chunk
+static func random_chunk() -> Chunk:
+	var j = _chunk_json_data.pick_random()
+	return build_chunk_from_json(j)
 
 
 # Builds a chunk from some of the banked JSON data
