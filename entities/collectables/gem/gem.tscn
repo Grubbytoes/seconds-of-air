@@ -1,0 +1,115 @@
+[gd_scene load_steps=15 format=3 uid="uid://cm7n2f2jyn2hf"]
+
+[ext_resource type="PackedScene" uid="uid://disi8167tjktf" path="res://entities/collectables/base_collectable.tscn" id="1_sdpi3"]
+[ext_resource type="Script" uid="uid://p536w3l7oqr0" path="res://entities/collectables/gem/gem.gd" id="2_itl00"]
+[ext_resource type="Texture2D" uid="uid://cf53y3ki4un42" path="res://media/soa-gems.png" id="2_nbutt"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nbutt"]
+atlas = ExtResource("2_nbutt")
+region = Rect2(64, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_itl00"]
+atlas = ExtResource("2_nbutt")
+region = Rect2(64, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_oierk"]
+atlas = ExtResource("2_nbutt")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_q5b2i"]
+atlas = ExtResource("2_nbutt")
+region = Rect2(32, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vvafr"]
+atlas = ExtResource("2_nbutt")
+region = Rect2(48, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_b4po2"]
+atlas = ExtResource("2_nbutt")
+region = Rect2(48, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_a1yeg"]
+atlas = ExtResource("2_nbutt")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lsusd"]
+atlas = ExtResource("2_nbutt")
+region = Rect2(16, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1hw55"]
+atlas = ExtResource("2_nbutt")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_12iw2"]
+atlas = ExtResource("2_nbutt")
+region = Rect2(0, 16, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_wktxp"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nbutt")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_itl00")
+}],
+"loop": true,
+"name": &"diamond",
+"speed": 2.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_oierk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_q5b2i")
+}],
+"loop": true,
+"name": &"emerald",
+"speed": 2.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vvafr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_b4po2")
+}],
+"loop": true,
+"name": &"ruby",
+"speed": 2.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_a1yeg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lsusd")
+}],
+"loop": true,
+"name": &"sapphire",
+"speed": 2.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1hw55")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_12iw2")
+}],
+"loop": true,
+"name": &"topaz",
+"speed": 2.0
+}]
+
+[node name="Gem" instance=ExtResource("1_sdpi3")]
+script = ExtResource("2_itl00")
+type = 4
+
+[node name="SimpleEffectsPlayer" parent="." index="1"]
+autoplay = "RESET"
+
+[node name="Sprite" type="AnimatedSprite2D" parent="." index="2"]
+sprite_frames = SubResource("SpriteFrames_wktxp")
+animation = &"emerald"
+frame_progress = 0.104702

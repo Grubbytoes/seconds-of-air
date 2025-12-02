@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=4 uid="uid://c450vssf4k6np"]
+[gd_scene load_steps=10 format=4 uid="uid://c450vssf4k6np"]
 
 [ext_resource type="PackedScene" uid="uid://cgry3l81jcigo" path="res://entities/characters/player_character/player_character.tscn" id="1_el5fa"]
 [ext_resource type="PackedScene" uid="uid://bvqtn58j0hpn8" path="res://entities/scroller/scroller.tscn" id="2_iaslq"]
@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://cakgg5sj4dcvp" path="res://utilities/session_master/session_master.tscn" id="6_r66gt"]
 [ext_resource type="PackedScene" uid="uid://io75emuhghfk" path="res://entities/ui/hud/hud.tscn" id="7_dd4cx"]
 [ext_resource type="PackedScene" uid="uid://b7ubsu4vtw8y" path="res://entities/characters/enemies/slugbug/slugbug.tscn" id="8_hx351"]
+[ext_resource type="PackedScene" uid="uid://cm7n2f2jyn2hf" path="res://entities/collectables/gem/gem.tscn" id="9_qyqkd"]
 
 [node name="PremadeLevel" type="Node2D"]
 
@@ -88,6 +89,27 @@ position = Vector2(64, 384)
 
 [node name="Slugbug2" parent="." instance=ExtResource("8_hx351")]
 position = Vector2(256, 385)
+
+[node name="Node2D" type="Node2D" parent="."]
+
+[node name="Gem" parent="Node2D" instance=ExtResource("9_qyqkd")]
+position = Vector2(218, 119)
+
+[node name="Gem2" parent="Node2D" instance=ExtResource("9_qyqkd")]
+position = Vector2(188, 119)
+type = 0
+
+[node name="Gem3" parent="Node2D" instance=ExtResource("9_qyqkd")]
+position = Vector2(227, 144)
+type = 3
+
+[node name="Gem4" parent="Node2D" instance=ExtResource("9_qyqkd")]
+position = Vector2(176, 142)
+type = 2
+
+[node name="Gem5" parent="Node2D" instance=ExtResource("9_qyqkd")]
+position = Vector2(199, 158)
+type = 1
 
 [connection signal="air_update" from="SessionMaster" to="UILayer/HUD" method="update_air"]
 [connection signal="score_update" from="SessionMaster" to="UILayer/HUD" method="update_score"]
