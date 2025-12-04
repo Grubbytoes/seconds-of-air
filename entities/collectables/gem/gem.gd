@@ -1,3 +1,4 @@
+class_name Gem
 extends BaseCollectable
 
 enum Type {
@@ -19,8 +20,9 @@ func _ready() -> void:
 
 # * OVERRIDE
 func on_pickup():
-	super.on_pickup()
 	GlobalEvents.add_score.emit(get_value())
+	sprite.animation_finished.connect(queue_free, Object.ConnectFlags.CONNECT_ONE_SHOT)
+	sprite.play("pop")
 
 
 func update_sprite_animation():
@@ -53,4 +55,23 @@ func get_value() -> int:
 		return 100
 	
 	return 0
+
+
+static func new_random_instance() -> BaseCollectable:
+	var r = randi() % 31
+	const PACKED := preload("res://entities/collectables/gem/gem.tscn")
+	var g := PACKED.instantiate()
+
+	if r < 1:
+		g.type = Type.DIAMOND
+	elif r < 3:
+		g.type = Type.RUBY
+	elif r < 7:
+		g.type = Type.EMERALD
+	elif r < 15:
+		g.type = Type.SAPPHIRE
+	else: # r < 31
+		g.type = Type.TOPAZ
+	
+	return g
 

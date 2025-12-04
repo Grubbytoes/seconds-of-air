@@ -1,8 +1,14 @@
-[gd_scene load_steps=15 format=3 uid="uid://cm7n2f2jyn2hf"]
+[gd_scene load_steps=24 format=3 uid="uid://cm7n2f2jyn2hf"]
 
-[ext_resource type="PackedScene" uid="uid://disi8167tjktf" path="res://entities/collectables/base_collectable.tscn" id="1_sdpi3"]
 [ext_resource type="Script" uid="uid://p536w3l7oqr0" path="res://entities/collectables/gem/gem.gd" id="2_itl00"]
 [ext_resource type="Texture2D" uid="uid://cf53y3ki4un42" path="res://media/soa-gems.png" id="2_nbutt"]
+[ext_resource type="Texture2D" uid="uid://bkkehw5uvh4ev" path="res://media/pop.png" id="4_itl00"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_nbutt"]
+bounce = 0.5
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_l28ug"]
+radius = 6.0
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_nbutt"]
 atlas = ExtResource("2_nbutt")
@@ -19,6 +25,34 @@ region = Rect2(32, 0, 16, 16)
 [sub_resource type="AtlasTexture" id="AtlasTexture_q5b2i"]
 atlas = ExtResource("2_nbutt")
 region = Rect2(32, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wktxp"]
+atlas = ExtResource("4_itl00")
+region = Rect2(0, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_u07cq"]
+atlas = ExtResource("4_itl00")
+region = Rect2(24, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6leye"]
+atlas = ExtResource("4_itl00")
+region = Rect2(48, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ttj41"]
+atlas = ExtResource("4_itl00")
+region = Rect2(72, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cu3ki"]
+atlas = ExtResource("4_itl00")
+region = Rect2(96, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_orjq0"]
+atlas = ExtResource("4_itl00")
+region = Rect2(120, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4n3il"]
+atlas = ExtResource("4_itl00")
+region = Rect2(144, 0, 24, 24)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_vvafr"]
 atlas = ExtResource("2_nbutt")
@@ -70,6 +104,32 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_wktxp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_u07cq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6leye")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ttj41")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cu3ki")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_orjq0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4n3il")
+}],
+"loop": false,
+"name": &"pop",
+"speed": 16.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_vvafr")
 }, {
 "duration": 1.0,
@@ -102,14 +162,18 @@ animations = [{
 "speed": 2.0
 }]
 
-[node name="Gem" instance=ExtResource("1_sdpi3")]
+[node name="Gem" type="StaticBody2D"]
+collision_layer = 16
+collision_mask = 17
+physics_material_override = SubResource("PhysicsMaterial_nbutt")
 script = ExtResource("2_itl00")
 type = 4
 
-[node name="SimpleEffectsPlayer" parent="." index="1"]
-autoplay = "RESET"
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_l28ug")
 
-[node name="Sprite" type="AnimatedSprite2D" parent="." index="2"]
+[node name="Sprite" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_wktxp")
-animation = &"emerald"
-frame_progress = 0.104702
+animation = &"pop"
+frame = 6
+frame_progress = 1.0

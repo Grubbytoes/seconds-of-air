@@ -1,8 +1,20 @@
 extends BaseCollectable
 
-@export var air_value := 5
+const AIR_VALUE = 30
 
+@onready var sprite: AnimatedSprite2D = $Sprite
 
+var _sway_clock = 0.0
+
+func _physics_process(delta):
+	_sway_clock += delta * 2
+	
+	position.y -= 32 * delta
+	position.x += (sin(_sway_clock) / 8)
+
+# * OVERRIDE
 func on_pickup():
-	super.on_pickup()
-	GlobalEvents.add_air.emit(air_value)
+	GlobalEvents.add_air.emit(AIR_VALUE)
+	sprite.animation_finished.connect(queue_free, Object.ConnectFlags.CONNECT_ONE_SHOT)
+	sprite.play("pop")
+

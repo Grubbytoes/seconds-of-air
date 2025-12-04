@@ -29,6 +29,7 @@ func build_chunk(chunk: Chunk, y_offset = 0):
 	var solid_tiles_ptr = 0
 
 	solid_tiles.resize(chunk.solid_terrain_count)
+	print("building chunk")
 
 	for row in chunk.rows:
 		v.y += 1
@@ -64,6 +65,3 @@ func chunk_walls(y_offset: int) -> Array[Vector2i]:
 		walls[24+i] = Vector2i(24, i + y_offset)
 
 	return walls
-
-func ready_next_chunk():
-	pass # Replace with function body.

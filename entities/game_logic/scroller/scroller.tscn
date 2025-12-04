@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://bvqtn58j0hpn8"]
 
-[ext_resource type="Script" uid="uid://uleqawk6odw3" path="res://entities/scroller/scroller.gd" id="1_kcmbr"]
+[ext_resource type="Script" uid="uid://uleqawk6odw3" path="res://entities/game_logic/scroller/scroller.gd" id="1_kcmbr"]
 [ext_resource type="PackedScene" uid="uid://c6jh8y2f5figg" path="res://entities/ui/camera/main_camera.tscn" id="2_t4c0m"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_ierym"]

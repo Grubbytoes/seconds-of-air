@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://b7ubsu4vtw8y"]
+[gd_scene load_steps=17 format=3 uid="uid://b7ubsu4vtw8y"]
 
 [ext_resource type="Script" uid="uid://bkba56vnrblax" path="res://entities/characters/enemies/slugbug/slugbug.gd" id="1_pvlrv"]
 [ext_resource type="Texture2D" uid="uid://bkaq4o0x3dhog" path="res://media/slugbug.png" id="2_8jk2g"]
@@ -20,6 +20,30 @@ region = Rect2(64, 0, 32, 32)
 atlas = ExtResource("2_8jk2g")
 region = Rect2(96, 0, 32, 32)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_o3fle"]
+atlas = ExtResource("2_8jk2g")
+region = Rect2(128, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8jnse"]
+atlas = ExtResource("2_8jk2g")
+region = Rect2(160, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_l4y5h"]
+atlas = ExtResource("2_8jk2g")
+region = Rect2(128, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qjunl"]
+atlas = ExtResource("2_8jk2g")
+region = Rect2(160, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0cxde"]
+atlas = ExtResource("2_8jk2g")
+region = Rect2(192, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_boltr"]
+atlas = ExtResource("2_8jk2g")
+region = Rect2(224, 0, 32, 32)
+
 [sub_resource type="SpriteFrames" id="SpriteFrames_l4y5h"]
 animations = [{
 "frames": [{
@@ -38,6 +62,34 @@ animations = [{
 "loop": true,
 "name": &"default",
 "speed": 7.6
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_o3fle")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8jnse")
+}],
+"loop": true,
+"name": &"hit",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_l4y5h")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qjunl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0cxde")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_boltr")
+}],
+"loop": false,
+"name": &"kill",
+"speed": 10.0
 }]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_qjunl"]
@@ -48,18 +100,18 @@ height = 20.0
 radius = 11.0
 
 [node name="Slugbug" type="CharacterBody2D"]
-position = Vector2(0, 1)
 collision_layer = 8
 collision_mask = 3
 script = ExtResource("1_pvlrv")
 health = 3
 metadata/_custom_type_script = "uid://p2yxsjy362o8"
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+[node name="AnimatedSprite" type="AnimatedSprite2D" parent="."]
 use_parent_material = true
+position = Vector2(1, 0)
 sprite_frames = SubResource("SpriteFrames_l4y5h")
+animation = &"kill"
 autoplay = "default"
-frame_progress = 0.183944
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 4)
@@ -82,5 +134,7 @@ target_position = Vector2(0, 24)
 collision_mask = 265
 
 [node name="StunTimer" type="Timer" parent="."]
+wait_time = 0.4
+one_shot = true
 
 [connection signal="body_entered" from="HazardArea" to="." method="on_contact"]

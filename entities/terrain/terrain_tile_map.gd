@@ -40,6 +40,13 @@ func destroy_tile(coords: Vector2) -> bool:
 	# clear cell
 	erase_cell(coords)
 
+	# TODO make better lol
+	# random drop
+	if randi() % 8 == 0:
+		var g = Gem.new_random_instance()
+		g.position = coords * 16 + Vector2(8, 8)
+		add_sibling(g)
+
 	# play effects
 	var vfx := packed_destroy_effect.instantiate()
 	vfx.position = coords * 16

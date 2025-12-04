@@ -1,18 +1,50 @@
-[gd_scene load_steps=7 format=3 uid="uid://be3k6a50cjm7g"]
+[gd_scene load_steps=15 format=3 uid="uid://0kwgo8jcwc57"]
 
 [ext_resource type="PackedScene" uid="uid://disi8167tjktf" path="res://entities/collectables/base_collectable.tscn" id="1_hu5ir"]
-[ext_resource type="Script" uid="uid://beta5abya3jdp" path="res://entities/collectables/air_bubble/air_bubble.gd" id="2_8ld61"]
-[ext_resource type="Texture2D" uid="uid://lx537481of3a" path="res://media/placeholder_items.png" id="3_gs31a"]
+[ext_resource type="Script" uid="uid://d1t0qkorvwllq" path="res://entities/collectables/air_bubble/air_bubble.gd" id="2_8ld61"]
+[ext_resource type="Texture2D" uid="uid://di77wiagkcnoc" path="res://media/new-bubbles.png" id="3_gs31a"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_1qh4l"]
 atlas = ExtResource("3_gs31a")
-region = Rect2(0, 0, 16, 16)
+region = Rect2(0, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_pgdgg"]
 atlas = ExtResource("3_gs31a")
-region = Rect2(16, 0, 16, 16)
+region = Rect2(32, 0, 32, 32)
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_h0pqx"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_h0pqx"]
+atlas = ExtResource("3_gs31a")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_akm64"]
+atlas = ExtResource("3_gs31a")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bst7u"]
+atlas = ExtResource("3_gs31a")
+region = Rect2(128, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wpbor"]
+atlas = ExtResource("3_gs31a")
+region = Rect2(160, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_r4xwg"]
+atlas = ExtResource("3_gs31a")
+region = Rect2(192, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_si032"]
+atlas = ExtResource("3_gs31a")
+region = Rect2(224, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_x3bt2"]
+atlas = ExtResource("3_gs31a")
+region = Rect2(256, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_r8emx"]
+atlas = ExtResource("3_gs31a")
+region = Rect2(288, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_335ym"]
 animations = [{
 "frames": [{
 "duration": 1.0,
@@ -23,14 +55,48 @@ animations = [{
 }],
 "loop": true,
 "name": &"default",
-"speed": 1.9
+"speed": 1.5
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_h0pqx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_akm64")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bst7u")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wpbor")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_r4xwg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_si032")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_x3bt2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_r8emx")
+}, {
+"duration": 1.0,
+"texture": null
+}],
+"loop": false,
+"name": &"pop",
+"speed": 12.0
 }]
 
 [node name="AirBubble" instance=ExtResource("1_hu5ir")]
+collision_mask = 16
 script = ExtResource("2_8ld61")
-air_value = 5
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." index="1"]
-sprite_frames = SubResource("SpriteFrames_h0pqx")
+[node name="Sprite" type="AnimatedSprite2D" parent="." index="1"]
+sprite_frames = SubResource("SpriteFrames_335ym")
+animation = &"pop"
 autoplay = "default"
-frame_progress = 0.477394
+frame = 8
+frame_progress = 1.0

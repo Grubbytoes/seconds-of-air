@@ -44,6 +44,7 @@ func foo(delta_y):
 	if _scroll_measure >= CHUNK_LENGTH:
 		scrolled_chunk_length.emit()
 		_scroll_measure -= CHUNK_LENGTH
+		print("ping!")
 
 
 func bottom_area_entered(body:Node2D):
