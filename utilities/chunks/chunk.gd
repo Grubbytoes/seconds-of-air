@@ -5,26 +5,28 @@ enum ChunkObject {
 	EMPTY,
 	SOLID_TILE,
 	DESTRUCTIBLE_TILE,
-	COIN,
-	AIR_BUBBLE,
-	ENEMY
-}
-
-enum Opening {
-	LEFT, CENTER, RIGHT
+	GEM,
+	SLUGBUG,
+	ANGRY_SLUGBUG,
+	SLEEPING_SLUGBUG,
+	GEODE,
+	CHEST,
 }
 
 static var chunk_object_ids = {
 	's': ChunkObject.SOLID_TILE,
-	'x': ChunkObject.DESTRUCTIBLE_TILE
+	'x': ChunkObject.DESTRUCTIBLE_TILE,
+	'g': ChunkObject.GEM,
+	'b': ChunkObject.SLUGBUG,
+	'B': ChunkObject.ANGRY_SLUGBUG,
+	'Z': ChunkObject.SLEEPING_SLUGBUG,
+	'*': ChunkObject.GEODE,
+	'!': ChunkObject.CHEST,
 }
 
-var top_opening := Opening.CENTER
-var bottom_opening := Opening.CENTER
 var flipped_h := false
 var solid_terrain_count := 0
 var rows: Array[PackedInt32Array] = []
-
 
 func load(d: Dictionary) -> bool:
 	if !d.has_all(["map", "terrain_count"]):
