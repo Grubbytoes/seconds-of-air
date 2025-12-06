@@ -1,9 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://cgry3l81jcigo"]
+[gd_scene load_steps=8 format=3 uid="uid://cgry3l81jcigo"]
 
 [ext_resource type="Script" uid="uid://dxcpaohd86cge" path="res://entities/characters/player_character/player_character.gd" id="1_5e5vb"]
 [ext_resource type="Texture2D" uid="uid://cdeh3xa7gswec" path="res://media/placeholder_character.png" id="1_q6prm"]
 [ext_resource type="Script" uid="uid://do2gepia3gqgk" path="res://entities/characters/player_character/pickup_area.gd" id="3_0ve86"]
 [ext_resource type="PackedScene" uid="uid://xfrm7125lq2o" path="res://utilities/effects/simple_effects_player.tscn" id="4_rkrak"]
+[ext_resource type="Texture2D" uid="uid://bfxcrxwq87wja" path="res://media/cursor.png" id="5_xohvw"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4b1jd"]
 size = Vector2(14, 14)
@@ -11,11 +12,12 @@ size = Vector2(14, 14)
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_bfe2j"]
 height = 22.0
 
-[node name="PlayerCharacter" type="CharacterBody2D" groups=["player"]]
+[node name="PlayerCharacter" type="CharacterBody2D" node_paths=PackedStringArray("crosshair") groups=["player"]]
 z_index = 1
 collision_layer = 2
-collision_mask = 11
+collision_mask = 267
 script = ExtResource("1_5e5vb")
+crosshair = NodePath("Crosshair")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("1_q6prm")
@@ -36,6 +38,13 @@ shape = SubResource("CapsuleShape2D_bfe2j")
 debug_color = Color(0.977959, 0, 0.403737, 0)
 
 [node name="SimpleEffectsPlayer" parent="." instance=ExtResource("4_rkrak")]
+
+[node name="Crosshair" type="Node2D" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="Crosshair"]
+texture = ExtResource("5_xohvw")
+
+[node name="Line2D" type="Line2D" parent="Crosshair"]
 
 [connection signal="damage_taken" from="." to="SimpleEffectsPlayer" method="play" binds= [&"flash"]]
 [connection signal="timeout" from="ShotTimer" to="." method="_shot_timer_timeout"]

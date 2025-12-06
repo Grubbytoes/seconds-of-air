@@ -2,30 +2,89 @@ extends BaseCharacter
 
 signal damage_taken
 
-const MOVE_SPEED = 100
-const MOVE_ACCELERATION = 250
+enum PlayerState {
+	IDLE,
+	MOVE,
+	SHOOT,
+	DASH
+}
+
+const MOVE_SPEED = 125
+const MOVE_ACCELERATION = 200
 const SHOT_RECOIL_STRENGTH = 10
 const SHOT_VELOCITY = 450
+const SHOT_PERIOD = .2
 
-var facing_dir := Vector2.UP
-var packed_projectile = preload("res://entities/projectiles/player_projectile/player_projectile.tscn")
-var currently_shooting = false
+static var packed_projectile = preload("res://entities/projectiles/player_projectile/player_projectile.tscn")
 
-var _can_shoot := true
+var current_state := PlayerState.IDLE
+
+var _thrust_dir := Vector2.DOWN
+var _facing_dir := Vector2.DOWN
+var _shot_ready := true
 var _can_move := true
-
 
 @onready var shot_timer := $ShotTimer as Timer
 
+@export var crosshair: Node2D
 
 func _physics_process(delta):
-	var did_move = action_move(delta)
-	var did_shoot = action_shoot()
-	
-	if !did_move:
-		apply_drag(delta)
+	action_move(delta)
+	apply_drag(delta, .2)
+	action_shoot()
+	turn_face(delta)
 
 	move_and_slide()
+
+
+func action_move(delta_time: float):
+	if not _can_move:
+		return
+
+	var input_vector = Input.get_vector(
+		"action_left",
+		"action_right",
+		"action_up",
+		"action_down"
+	)
+
+	if input_vector:
+		_thrust_dir = input_vector.normalized()
+		current_state = PlayerState.MOVE
+		velocity = velocity.move_toward(_thrust_dir * MOVE_SPEED, MOVE_ACCELERATION * delta_time)
+	else:
+		current_state = PlayerState.IDLE
+	
+
+func action_shoot():
+	if Input.is_action_pressed("action_1"):
+		current_state = PlayerState.SHOOT
+
+	# check for shot
+	if _shot_ready and current_state == PlayerState.SHOOT:
+		shoot()
+
+
+func shoot():
+	# shoot projectile
+	var new_projectile = packed_projectile.instantiate() as Projectile
+	add_sibling(new_projectile)
+	new_projectile.launch(position, _facing_dir * SHOT_VELOCITY)
+	apply_recoil(-_facing_dir * SHOT_RECOIL_STRENGTH)
+
+	# start cooldown
+	_shot_ready = false
+	shot_timer.start(SHOT_PERIOD)
+
+
+func turn_face(delta: float):
+	const SNAP = deg_to_rad(1)
+
+	if current_state != PlayerState.SHOOT:
+		_facing_dir = _thrust_dir
+
+	if crosshair:
+		crosshair.position = crosshair.position.slerp(_facing_dir * 48, delta * 10)
 
 
 # * override
@@ -40,52 +99,5 @@ func take_hit(damage := 0, knockback := Vector2.ZERO):
 	t.timeout.connect(func(): _can_move = true)
 
 
-func action_move(delta_time: float) -> bool:
-	var dir = Vector2.ZERO
-
-	if not _can_move:
-		dir = Vector2.ZERO
-	else:
-		dir = Input.get_vector(
-			"action_left",
-			"action_right",
-			"action_up",
-			"action_down"
-		) * MOVE_SPEED
-	
-	if dir:
-		velocity = velocity.move_toward(dir * MOVE_SPEED, MOVE_ACCELERATION * delta_time)
-	
-	if dir and not currently_shooting:
-		facing_dir = dir.normalized()
-	
-	return dir != Vector2.ZERO
-
-
-func action_shoot() -> bool:
-	# check for shot
-	if Input.is_action_pressed("action_1") and _can_shoot:
-		shoot()
-		currently_shooting = true
-		return true
-	elif Input.is_action_just_released("action_1"):
-		currently_shooting = false
-	
-	return false
-
-
-func shoot():
-	print("pew: %s" % facing_dir)
-
-	# shoot projectile
-	var new_projectile = packed_projectile.instantiate() as Projectile
-	add_sibling(new_projectile)
-	new_projectile.launch(position, facing_dir * SHOT_VELOCITY)
-
-	# start cooldown
-	_can_shoot = false
-	shot_timer.start()
-
-
 func _shot_timer_timeout():
-	_can_shoot = true
+	_shot_ready = true
