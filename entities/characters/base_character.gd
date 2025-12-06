@@ -2,7 +2,7 @@ class_name BaseCharacter
 extends CharacterBody2D
 
 # Base drag applied to characters
-const BASE_KNOCKBACK = 80
+const BASE_KNOCKBACK = 120
 const BASE_MAX_RECOIL = 100
 
 

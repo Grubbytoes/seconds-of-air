@@ -1,8 +1,9 @@
-[gd_scene load_steps=17 format=3 uid="uid://b7ubsu4vtw8y"]
+[gd_scene load_steps=18 format=3 uid="uid://b7ubsu4vtw8y"]
 
 [ext_resource type="Script" uid="uid://bkba56vnrblax" path="res://entities/characters/enemies/slugbug/slugbug.gd" id="1_pvlrv"]
 [ext_resource type="Texture2D" uid="uid://bkaq4o0x3dhog" path="res://media/slugbug.png" id="2_8jk2g"]
 [ext_resource type="PackedScene" uid="uid://xfrm7125lq2o" path="res://utilities/effects/simple_effects_player.tscn" id="3_pvlrv"]
+[ext_resource type="PackedScene" uid="uid://b2uqsbphdff7u" path="res://utilities/off_screen_timeout/off_screen_timout.tscn" id="4_hfiyd"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_pvlrv"]
 atlas = ExtResource("2_8jk2g")
@@ -135,4 +136,7 @@ one_shot = true
 
 [node name="SightRay" type="RayCast2D" parent="."]
 
+[node name="OffScreenTimer" parent="." instance=ExtResource("4_hfiyd")]
+
 [connection signal="body_entered" from="HazardArea" to="." method="on_contact"]
+[connection signal="off_screen_timeout" from="OffScreenTimer" to="." method="queue_free"]

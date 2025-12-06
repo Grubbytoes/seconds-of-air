@@ -1,8 +1,9 @@
-[gd_scene load_steps=24 format=3 uid="uid://cm7n2f2jyn2hf"]
+[gd_scene load_steps=25 format=3 uid="uid://cm7n2f2jyn2hf"]
 
 [ext_resource type="Script" uid="uid://p536w3l7oqr0" path="res://entities/collectables/gem/gem.gd" id="2_itl00"]
 [ext_resource type="Texture2D" uid="uid://cf53y3ki4un42" path="res://media/soa-gems.png" id="2_nbutt"]
 [ext_resource type="Texture2D" uid="uid://bkkehw5uvh4ev" path="res://media/pop.png" id="4_itl00"]
+[ext_resource type="PackedScene" uid="uid://b2uqsbphdff7u" path="res://utilities/off_screen_timeout/off_screen_timout.tscn" id="4_oierk"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_nbutt"]
 bounce = 0.5
@@ -177,3 +178,7 @@ sprite_frames = SubResource("SpriteFrames_wktxp")
 animation = &"pop"
 frame = 6
 frame_progress = 1.0
+
+[node name="OffScreenTimer" parent="." instance=ExtResource("4_oierk")]
+
+[connection signal="off_screen_timeout" from="OffScreenTimer" to="." method="queue_free"]
