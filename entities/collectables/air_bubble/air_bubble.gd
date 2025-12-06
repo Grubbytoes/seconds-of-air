@@ -7,10 +7,10 @@ const AIR_VALUE = 30
 var _sway_clock = 0.0
 
 func _physics_process(delta):
-	_sway_clock += delta * 2
+	_sway_clock += delta * 1.2
 	
-	position.y -= 32 * delta
-	position.x += (sin(_sway_clock) / 8)
+	position.y -= 24 * delta
+	position.x += (sin(_sway_clock) / 2)
 
 # * OVERRIDE
 func on_pickup():

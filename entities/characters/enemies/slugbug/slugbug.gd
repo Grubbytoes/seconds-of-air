@@ -36,7 +36,7 @@ func _physics_process(delta):
 
 # * OVERRIDE
 func take_hit(damage := 0, knockback := Vector2.ZERO):
-	super.take_hit(damage, knockback)
+	super.take_hit(damage)
 	
 	if !is_alive():
 		return

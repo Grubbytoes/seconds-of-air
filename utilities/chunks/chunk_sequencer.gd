@@ -17,7 +17,7 @@ func next_chunk() -> Chunk:
 
 
 # gets a random appropriate chunk from the loader
-func chunk_from_loader(_opening := Chunk.Opening.CENTER) -> Chunk:
+func chunk_from_loader() -> Chunk:
 	var new_chunk = ChunkLoader.random_chunk()
 	if (randi() % 2):
 		new_chunk.flip_h()

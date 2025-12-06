@@ -10,8 +10,6 @@ func _ready():
 
 
 func spawn_bubble():
-	print("spawn bubble")
-
 	var new_bubble = _PACKED_BUBBLE.instantiate()
 	new_bubble.position = random_position()
 	add_child(new_bubble)

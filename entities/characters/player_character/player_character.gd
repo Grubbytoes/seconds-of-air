@@ -9,7 +9,7 @@ enum PlayerState {
 	DASH
 }
 
-const MOVE_SPEED = 100
+const MOVE_SPEED = 125
 const MOVE_ACCELERATION = 200
 const SHOT_RECOIL_STRENGTH = 10
 const SHOT_VELOCITY = 450

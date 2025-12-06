@@ -29,8 +29,7 @@ func build_chunk(chunk: Chunk, y_offset = 0):
 	var solid_tiles_ptr = 0
 
 	solid_tiles.resize(chunk.solid_terrain_count)
-	print("building chunk")
-
+	
 	for row in chunk.rows:
 		v.y += 1
 		v.x = 0
@@ -38,12 +37,27 @@ func build_chunk(chunk: Chunk, y_offset = 0):
 			v.x = 23
 
 		for o in row:
+			# TODO this works but is spaghetti af sort it out m8
 			if o == Chunk.ChunkObject.SOLID_TILE:
 				solid_tiles[solid_tiles_ptr] = v + v_offset
 				solid_tiles_ptr += 1
-			elif o != Chunk.ChunkObject.EMPTY:
+			elif o == Chunk.ChunkObject.DESTRUCTIBLE_TILE:
 				ter.place_destructible_tile(v + v_offset)
-			
+			elif o == Chunk.ChunkObject.GEM:
+				var g = Gem.new_random_instance()
+				g.position = (v + v_offset) * 16 
+				g.position += Vector2(8, 8)
+				ter.add_child(g)
+			elif o == Chunk.ChunkObject.SLUGBUG:
+				var sb = preload("res://entities/characters/enemies/slugbug/slugbug.tscn").instantiate()
+				sb.position = (v + v_offset) * 16 
+				sb.position += Vector2(8, 8)
+				ter.add_child(sb)
+			elif o == Chunk.ChunkObject.ANGRY_SLUGBUG:
+				var asb = preload("res://entities/characters/enemies/angry_slugbug/angry_slugbug.tscn").instantiate()
+				asb.position = (v + v_offset) * 16 
+				asb.position += Vector2(8, 8)
+				ter.add_child(asb)
 			# moving along the row (backwards if flipped)
 			if chunk.flipped_h:
 				v.x -= 1

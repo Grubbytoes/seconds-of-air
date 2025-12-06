@@ -8,8 +8,10 @@ signal death
 
 
 # * OVERRIDE
-func take_hit(damage := 0, _knockback := Vector2.ZERO):
+func take_hit(damage := 0, knockback := Vector2.ZERO):
 	health = max(0, health - damage)
+
+	apply_recoil(knockback)
 
 	if !is_alive():
 		kill()
