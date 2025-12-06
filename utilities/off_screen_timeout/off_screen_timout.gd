@@ -18,12 +18,10 @@ func _ready() -> void:
 
 
 func on_timer_timeout() -> void:
-	print("off screen timeout!")
 	off_screen_timeout.emit()
 
 
 func on_screen_exited() -> void:
-	print("screen exited")
 	timer.start(wait_time)
 
 

@@ -24,5 +24,5 @@ func start_timer():
 
 func random_position() -> Vector2:
 	var p = Vector2(0, 250)
-	p.x += randi_range(2, 22) * 16
+	p.x += randi_range(4, Chunk.LENGTH - 4) * 16
 	return p

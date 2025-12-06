@@ -22,6 +22,7 @@ func kill():
 	death.emit()
 
 
+# TODO wtf is going on here
 func on_contact(body: Node2D):
 	# player contact damage
 	if body.is_in_group("player") and body is BaseCharacter:

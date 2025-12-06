@@ -12,7 +12,7 @@ enum PlayerState {
 const MOVE_SPEED = 125
 const MOVE_ACCELERATION = 200
 const SHOT_RECOIL_STRENGTH = 10
-const SHOT_VELOCITY = 450
+const SHOT_VELOCITY = 350
 const SHOT_PERIOD = .2
 
 static var packed_projectile = preload("res://entities/projectiles/player_projectile/player_projectile.tscn")
@@ -84,7 +84,7 @@ func turn_face(delta: float):
 		_facing_dir = _thrust_dir
 
 	if crosshair:
-		crosshair.position = crosshair.position.slerp(_facing_dir * 48, delta * 10)
+		crosshair.position = crosshair.position.slerp(_facing_dir * 64, delta * 10)
 
 
 # * override

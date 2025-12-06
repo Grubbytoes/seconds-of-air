@@ -24,6 +24,9 @@ static var chunk_object_ids = {
 	'!': ChunkObject.CHEST,
 }
 
+const LENGTH = 24
+const AREA = LENGTH ** 2
+
 var flipped_h := false
 var solid_terrain_count := 0
 var rows: Array[PackedInt32Array] = []

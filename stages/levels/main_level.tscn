@@ -24,6 +24,7 @@ dynamic_scroll_speed = false
 [node name="ChunkBuilder" type="Node" parent="." node_paths=PackedStringArray("ter")]
 script = ExtResource("5_0uelv")
 ter = NodePath("../TerrainTileMap")
+clear_behind = 3
 initial_offset = 8
 metadata/_custom_type_script = "uid://b3ojbimvxhv1f"
 

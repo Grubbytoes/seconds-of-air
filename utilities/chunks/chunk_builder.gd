@@ -6,6 +6,7 @@ extends Node
 
 @export var ter: TerrainTileMap
 @export var preload_chunks := 2
+@export var clear_behind := 5
 @export var initial_offset := 0
 
 var chunk_sequencer := ChunkSequencer.new()
@@ -17,9 +18,11 @@ func _ready():
 
 func build_next_chunk():
 	var chunk := chunk_sequencer.next_chunk()
-	var y_offset = initial_offset + (chunk_sequencer.chunk_count - 1) * 24
+	var y_offset = initial_offset + (chunk_sequencer.chunk_count - 1) * Chunk.LENGTH
 
 	build_chunk(chunk, y_offset)
+	if chunk_sequencer.chunk_count >= clear_behind:
+		erase_chunk(y_offset - Chunk.LENGTH * clear_behind)
 
 
 func build_chunk(chunk: Chunk, y_offset = 0):
@@ -66,6 +69,21 @@ func build_chunk(chunk: Chunk, y_offset = 0):
 
 	ter.place_solid_terrain(solid_tiles)
 	ter.place_solid_terrain(chunk_walls(y_offset))
+
+
+func erase_chunk(y_offset = 0):
+	const CELLS_TO_ERASE = Chunk.AREA + Chunk.LENGTH * 2
+
+	var v = Vector2i(-1, 0)
+	var v_offset = Vector2i(0, y_offset)
+
+	for i in range(CELLS_TO_ERASE):
+		ter.erase_cell(v + v_offset)
+
+		v.x += 1
+		if v.x >= Chunk.LENGTH + 1:
+			v.x = -1
+			v.y += 1
 
 
 func chunk_walls(y_offset: int) -> Array[Vector2i]:
