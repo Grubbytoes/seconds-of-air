@@ -11,7 +11,6 @@
 [ext_resource type="PackedScene" uid="uid://cm7n2f2jyn2hf" path="res://entities/collectables/gem/gem.tscn" id="9_qyqkd"]
 
 [node name="PremadeLevel" type="Node2D"]
-position = Vector2(2, 2)
 
 [node name="Scroller" parent="." node_paths=PackedStringArray("char") instance=ExtResource("2_iaslq")]
 char = NodePath("../PlayerCharacter")
@@ -40,17 +39,15 @@ offset_bottom = 3.0
 [node name="Slugbug" parent="." instance=ExtResource("8_hx351")]
 position = Vector2(64, 384)
 
-[node name="Slugbug2" parent="." instance=ExtResource("8_hx351")]
-position = Vector2(298, 66)
-
 [node name="Gems" type="Node2D" parent="."]
 
 [node name="Gem" parent="Gems" instance=ExtResource("9_qyqkd")]
 position = Vector2(218, 119)
 
 [node name="Gem2" parent="Gems" instance=ExtResource("9_qyqkd")]
-position = Vector2(188, 119)
+position = Vector2(188, 120)
 type = 0
+damping = 10.0
 
 [node name="Gem3" parent="Gems" instance=ExtResource("9_qyqkd")]
 position = Vector2(227, 144)

@@ -1,15 +1,17 @@
 extends BaseCollectable
 
 const AIR_VALUE = 30
+const RISE_VELOCITY = 32
 
 @onready var sprite: AnimatedSprite2D = $Sprite
 
 var _sway_clock = 0.0
 
 func _physics_process(delta):
+	# TODO incorporate BaseCollectable.move(...)
 	_sway_clock += delta * 1.2
 	
-	position.y -= 24 * delta
+	position.y -= RISE_VELOCITY * delta
 	position.x += (sin(_sway_clock) / 2)
 
 # * OVERRIDE

@@ -45,6 +45,7 @@ func destroy_tile(coords: Vector2) -> bool:
 	if randi() % 8 == 0:
 		var g = Gem.new_random_instance()
 		g.position = coords * 16 + Vector2(8, 8)
+		g.motion = Vector2.UP.rotated(randf() * 2 * PI) * 25
 		add_sibling(g)
 
 	# play effects

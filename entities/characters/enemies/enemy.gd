@@ -5,6 +5,7 @@ signal death
 
 @export var health := 1 
 @export var contact_damage := 1
+@export var drop_gems := 0
 
 
 # * OVERRIDE
@@ -17,9 +18,15 @@ func take_hit(damage := 0, knockback := Vector2.ZERO):
 		kill()
 
 
-## does nothing by default, made to be overridden
+## emits death signal and triggers drop
 func kill():
 	death.emit()
+	# TODO handle multiple gems
+	if drop_gems > 0:
+		var g = Gem.new_random_instance()
+		g.position = self.position
+		g.motion = Vector2.UP.rotated(randf() * 2 * PI) * 50
+		add_sibling(g)
 
 
 # TODO wtf is going on here

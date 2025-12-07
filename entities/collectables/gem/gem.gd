@@ -13,10 +13,15 @@ enum Type {
 
 @onready var sprite: AnimatedSprite2D = $Sprite
 
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	update_sprite_animation()
 
+
+func _physics_process(delta):
+	move(delta)
+	
 
 # * OVERRIDE
 func on_pickup():
@@ -74,4 +79,3 @@ static func new_random_instance() -> BaseCollectable:
 		g.type = Type.TOPAZ
 	
 	return g
-
