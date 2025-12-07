@@ -125,7 +125,8 @@ damping_max = 120.0
 scale_curve = SubResource("CurveTexture_g2tuc")
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_0n4qp"]
-radius = 14.0
+radius = 16.0
+height = 42.0
 
 [node name="GreenChest" type="Node2D"]
 script = ExtResource("1_ckxmv")

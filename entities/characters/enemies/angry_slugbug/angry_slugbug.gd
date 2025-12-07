@@ -21,10 +21,12 @@ func _ready():
 
 
 func _physics_process(delta):
+	if !is_alive():
+		velocity = Vector2.ZERO
 	if state == State.CHASE:
 		velocity = self.position.direction_to(chase_target.position) * move_speed
-	elif state == State.STUN:
-		velocity = Vector2.ZERO
+	else:
+		apply_drag(delta)
 	
 	move_and_slide()
 

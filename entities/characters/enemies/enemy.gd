@@ -7,23 +7,28 @@ signal death
 @export var contact_damage := 1
 @export var drop_gems := 0
 
+var _alive = true
 
 # * OVERRIDE
 func take_hit(damage := 0, knockback := Vector2.ZERO):
 	health = max(0, health - damage)
 
-	apply_recoil(knockback)
+	apply_recoil(knockback, true)
 
-	if !is_alive():
+	if health == 0:
 		kill()
 
 
 ## emits death signal and triggers drop
 func kill():
+	if not _alive:
+		return
+
 	death.emit()
-	# TODO handle multiple gems
+	_alive = false
+
 	for i in range(drop_gems):
-		Gem.drop_random(get_parent(), position, Vector2(50, 0), 2 * PI) 
+		Gem.drop_random(get_parent(), position, Vector2(50, 0), 2 * PI)
 
 
 # TODO wtf is going on here
@@ -35,4 +40,4 @@ func on_contact(body: Node2D):
 	
 
 func is_alive() -> bool:
-	return 0 < health
+	return _alive

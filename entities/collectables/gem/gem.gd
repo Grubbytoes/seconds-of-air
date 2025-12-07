@@ -62,7 +62,7 @@ func get_value() -> int:
 	return 0
 
 
-static func drop_random(drop_parent: Node2D, drop_position: Vector2, initial_motion := Vector2.ZERO, spread := 0.0, ghost_period := 0.25) -> void:
+static func drop_random(drop_parent: Node2D, drop_position: Vector2, initial_motion := Vector2.ZERO, spread := 0.0, ghost_period := 0.5) -> void:
 	var d = Gem.new_random_instance()
 	d.position = drop_position
 	d.motion = initial_motion
