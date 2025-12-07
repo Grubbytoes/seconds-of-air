@@ -5,6 +5,7 @@ extends StaticBody2D
 @export var damping := 5.0
 @export var bounce := 0.5
 
+
 func on_pickup():
 	queue_free()
 

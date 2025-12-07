@@ -62,7 +62,25 @@ func get_value() -> int:
 	return 0
 
 
-static func new_random_instance() -> BaseCollectable:
+static func drop_random(drop_parent: Node2D, drop_position: Vector2, initial_motion := Vector2.ZERO, spread := 0.0, ghost_period := 0.25) -> void:
+	var d = Gem.new_random_instance()
+	d.position = drop_position
+	d.motion = initial_motion
+
+	if spread > 0:
+		var r = randf() * spread - spread / 2
+		d.motion = d.motion.rotated(r)
+
+	if ghost_period > 0:
+		var timer = drop_parent.get_tree().create_timer(ghost_period)
+
+		d.set_collision_layer_value(5, false)
+		timer.timeout.connect(d.set_collision_layer_value.bind(5, true))
+	
+	drop_parent.add_child(d)
+
+
+static func new_random_instance() -> Gem:
 	var r = randi() % 31
 	const PACKED := preload("res://entities/collectables/gem/gem.tscn")
 	var g := PACKED.instantiate()

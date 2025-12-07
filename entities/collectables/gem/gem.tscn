@@ -1,12 +1,9 @@
-[gd_scene load_steps=25 format=3 uid="uid://cm7n2f2jyn2hf"]
+[gd_scene load_steps=24 format=3 uid="uid://cm7n2f2jyn2hf"]
 
 [ext_resource type="Script" uid="uid://p536w3l7oqr0" path="res://entities/collectables/gem/gem.gd" id="2_itl00"]
 [ext_resource type="Texture2D" uid="uid://cf53y3ki4un42" path="res://media/soa-gems.png" id="2_nbutt"]
 [ext_resource type="Texture2D" uid="uid://bkkehw5uvh4ev" path="res://media/pop.png" id="4_itl00"]
 [ext_resource type="PackedScene" uid="uid://b2uqsbphdff7u" path="res://utilities/off_screen_timeout/off_screen_timout.tscn" id="4_oierk"]
-
-[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_nbutt"]
-bounce = 0.5
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_l28ug"]
 radius = 6.0
@@ -166,7 +163,6 @@ animations = [{
 [node name="Gem" type="StaticBody2D"]
 collision_layer = 16
 collision_mask = 17
-physics_material_override = SubResource("PhysicsMaterial_nbutt")
 script = ExtResource("2_itl00")
 type = 4
 

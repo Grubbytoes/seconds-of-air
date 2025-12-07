@@ -109,6 +109,7 @@ collision_layer = 8
 collision_mask = 3
 script = ExtResource("1_7p836")
 health = 3
+drop_gems = 3
 metadata/_custom_type_script = "uid://p2yxsjy362o8"
 
 [node name="AnimatedSprite" type="AnimatedSprite2D" parent="."]

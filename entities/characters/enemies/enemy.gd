@@ -22,11 +22,8 @@ func take_hit(damage := 0, knockback := Vector2.ZERO):
 func kill():
 	death.emit()
 	# TODO handle multiple gems
-	if drop_gems > 0:
-		var g = Gem.new_random_instance()
-		g.position = self.position
-		g.motion = Vector2.UP.rotated(randf() * 2 * PI) * 50
-		add_sibling(g)
+	for i in range(drop_gems):
+		Gem.drop_random(get_parent(), position, Vector2(50, 0), 2 * PI) 
 
 
 # TODO wtf is going on here

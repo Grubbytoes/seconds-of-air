@@ -13,7 +13,7 @@ const MOVE_SPEED = 125
 const MOVE_ACCELERATION = 200
 const SHOT_RECOIL_STRENGTH = 10
 const SHOT_VELOCITY = 350
-const SHOT_PERIOD = .2
+const SHOT_PERIOD = 2.0 / 11
 
 static var packed_projectile = preload("res://entities/projectiles/player_projectile/player_projectile.tscn")
 

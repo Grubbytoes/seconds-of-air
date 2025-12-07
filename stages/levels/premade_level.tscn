@@ -43,10 +43,12 @@ position = Vector2(64, 384)
 
 [node name="Gem" parent="Gems" instance=ExtResource("9_qyqkd")]
 position = Vector2(218, 119)
+motion = Vector2(-20, 0)
 
 [node name="Gem2" parent="Gems" instance=ExtResource("9_qyqkd")]
-position = Vector2(188, 120)
+position = Vector2(187, 124)
 type = 0
+motion = Vector2(20, 0)
 damping = 10.0
 
 [node name="Gem3" parent="Gems" instance=ExtResource("9_qyqkd")]
