@@ -5,7 +5,7 @@ extends Node
 ## As well as a central point of contact for communications (player to ui etc) and signals to minimize coupling
 
 signal time_tick()
-signal session_ended()
+signal session_ended(results: SessionResults)
 signal score_update(new_score: int)
 signal time_update(new_time: int)
 signal air_update(new_air: int)
@@ -15,6 +15,7 @@ signal air_update(new_air: int)
 var time := 0
 var air := 0
 var score := 0
+var results: SessionResults
 
 @onready var tick_timer: Timer = $TickTimer
 
@@ -58,5 +59,10 @@ func tick():
 
 
 func end_game():
-	tick_timer.queue_free()
-	session_ended.emit()
+	tick_timer.stop()
+
+	results = SessionResults.new()
+
+	results.score = score
+	results.time = time
+	session_ended.emit(results)

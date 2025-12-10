@@ -1,0 +1,39 @@
+[gd_scene load_steps=2 format=3 uid="uid://coq7snaa2p0e2"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_1gbm5"]
+font_size = 64
+
+[node name="MainMenu" type="Node2D"]
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 9
+anchor_bottom = 1.0
+offset_right = 1152.0
+offset_bottom = 648.0
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -257.0
+offset_top = -44.0
+offset_right = 257.0
+offset_bottom = 44.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="Control/VBoxContainer"]
+layout_mode = 2
+text = "SECONDS OF AIR"
+label_settings = SubResource("LabelSettings_1gbm5")
+
+[node name="Button" type="Button" parent="Control/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+text = "START GAME"
