@@ -1,6 +1,6 @@
 extends BaseCollectable
 
-const AIR_VALUE = 30
+const AIR_VALUE = 20
 const RISE_VELOCITY = 32
 
 @onready var sprite: AnimatedSprite2D = $Sprite

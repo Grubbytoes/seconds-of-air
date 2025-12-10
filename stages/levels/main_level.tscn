@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://vm8hq88hq8jr"]
+[gd_scene load_steps=9 format=3 uid="uid://vm8hq88hq8jr"]
 
 [ext_resource type="PackedScene" uid="uid://cgry3l81jcigo" path="res://entities/characters/player_character/player_character.tscn" id="1_acn0u"]
 [ext_resource type="Script" uid="uid://k3udx8siw08h" path="res://stages/levels/main_level.gd" id="1_ierym"]
@@ -6,6 +6,8 @@
 [ext_resource type="Script" uid="uid://b3ojbimvxhv1f" path="res://utilities/chunks/chunk_builder.gd" id="5_0uelv"]
 [ext_resource type="PackedScene" uid="uid://bvqtn58j0hpn8" path="res://entities/game_logic/scroller/scroller.tscn" id="5_1auff"]
 [ext_resource type="PackedScene" uid="uid://bgrtof84o7inv" path="res://entities/game_logic/bubble_spawner/bubble_spawner.tscn" id="5_n5hir"]
+[ext_resource type="PackedScene" uid="uid://io75emuhghfk" path="res://entities/ui/hud/hud.tscn" id="7_n5hir"]
+[ext_resource type="PackedScene" uid="uid://cakgg5sj4dcvp" path="res://utilities/session_master/session_master.tscn" id="8_8lwba"]
 
 [node name="MainLevel" type="Node2D"]
 script = ExtResource("1_ierym")
@@ -28,4 +30,15 @@ clear_behind = 3
 initial_offset = 8
 metadata/_custom_type_script = "uid://b3ojbimvxhv1f"
 
+[node name="UI" type="CanvasLayer" parent="."]
+
+[node name="HUD" parent="UI" instance=ExtResource("7_n5hir")]
+offset_left = 1.0
+offset_right = 1.0
+
+[node name="SessionMaster" parent="." instance=ExtResource("8_8lwba")]
+initial_air = 100
+
 [connection signal="scrolled_chunk_length" from="Scroller" to="ChunkBuilder" method="build_next_chunk"]
+[connection signal="air_update" from="SessionMaster" to="UI/HUD" method="update_air"]
+[connection signal="score_update" from="SessionMaster" to="UI/HUD" method="update_score"]

@@ -33,6 +33,9 @@ func kill():
 
 # TODO wtf is going on here
 func on_contact(body: Node2D):
+	if !is_alive():
+		return
+
 	# player contact damage
 	if body.is_in_group("player") and body is BaseCharacter:
 		var normal = self.position.direction_to(body.position)

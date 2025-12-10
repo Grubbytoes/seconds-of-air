@@ -42,7 +42,7 @@ offset_bottom = 3.0
 position = Vector2(171, 142)
 
 [node name="RedChest" parent="." instance=ExtResource("8_hx351")]
-position = Vector2(221, 130)
+position = Vector2(222, 133)
 
 [connection signal="air_update" from="SessionMaster" to="UILayer/HUD" method="update_air"]
 [connection signal="score_update" from="SessionMaster" to="UILayer/HUD" method="update_score"]
