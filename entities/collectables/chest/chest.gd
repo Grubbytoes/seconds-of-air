@@ -1,9 +1,10 @@
 class_name Chest
-extends Node2D
+extends StaticBody2D
 
 @export var drop_gems := 8
 
 var health := 3
+var opened = false
 
 var _i := false
 var _i_timer: Timer
@@ -22,12 +23,17 @@ func _ready():
 
 
 func trigger_body_entered(body:Node2D) -> void:
+	if opened: 
+		return
+	
 	if body.is_in_group("player"):
-		start_open()
+		open()
 		
 
-func start_open():
+func open():
+	opened = true
 	anim.play("open")
+	set_collision_layer_value(1, false)
 
 
 func release():
