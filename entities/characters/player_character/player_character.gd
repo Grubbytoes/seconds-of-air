@@ -69,7 +69,7 @@ func shoot():
 	# shoot projectile
 	var new_projectile = packed_projectile.instantiate() as Projectile
 	add_sibling(new_projectile)
-	new_projectile.launch(position, _facing_dir * SHOT_VELOCITY)
+	new_projectile.launch(position, _facing_dir * SHOT_VELOCITY, deg_to_rad(10))
 	apply_recoil(-_facing_dir * SHOT_RECOIL_STRENGTH)
 
 	# start cooldown
