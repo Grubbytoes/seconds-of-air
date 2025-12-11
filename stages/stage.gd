@@ -11,6 +11,10 @@ func attach_game(game: Game):
 		_game = game
 
 
+func queue_next_stage(stage_key: String):
+	get_game().load_stage(stage_key)
+
+
 func get_game():
 	return _game
 

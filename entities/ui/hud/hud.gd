@@ -6,8 +6,8 @@ extends Control
 
 
 func update_air(value):
-	var thing = [floor(value / 60), value % 60]
-	air_label.text = "AIR : %02d:%02d" % thing
+	var as_minutes = [floor(value / 60), value % 60]
+	air_label.text = "AIR : %03d (%02d:%02d)" % [value, as_minutes[0], as_minutes[1]]
 
 
 func update_score(value):

@@ -37,7 +37,7 @@ offset_left = 1.0
 offset_right = 1.0
 
 [node name="SessionMaster" parent="." instance=ExtResource("8_8lwba")]
-initial_air = 10
+initial_air = 100
 
 [connection signal="scrolled_chunk_length" from="Scroller" to="ChunkBuilder" method="build_next_chunk"]
 [connection signal="air_update" from="SessionMaster" to="UI/HUD" method="update_air"]

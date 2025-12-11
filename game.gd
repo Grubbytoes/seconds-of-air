@@ -1,8 +1,10 @@
 class_name Game
 extends Node2D
 
-const GAME_STAGE := preload("res://stages/levels/main_level.tscn")
-const MAIN_MENU := preload("res://stages/menus/main/main_menu.tscn")
+static var _loaded_stages := {
+	"game stage" = load("res://stages/levels/main_level.tscn"),
+	"main menu" = load("res://stages/menus/main/main_menu.tscn"),
+}
 
 var current_stage: Stage
 
@@ -10,11 +12,12 @@ var current_stage: Stage
 
 
 func _ready():
-	load_stage(MAIN_MENU)
+	load_stage("main menu")
 
 
-func load_stage(packed_stage: PackedScene):
-	var new_stage := packed_stage.instantiate() as Stage
+func load_stage(stage_key: String):
+	var packed_stage := _loaded_stages.get(stage_key) as PackedScene
+	var new_stage := packed_stage.instantiate()
 
 	# checking validity of new stage
 	if not new_stage:
