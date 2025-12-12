@@ -11,7 +11,13 @@ const CHUNKS_PATH := "res://utilities/chunks/data"
 static var _chunk_json_data: Array[JSON] = [
 	preload(CHUNKS_PATH + "/soa-chunks1.json"),
 	preload(CHUNKS_PATH + "/soa-chunks2.json"),
-	preload(CHUNKS_PATH + "/soa-chunks3.json")
+	preload(CHUNKS_PATH + "/soa-chunks3.json"),
+	preload(CHUNKS_PATH + "/soa-chunks4.json"),
+	preload(CHUNKS_PATH + "/soa-chunks5.json"),
+	preload(CHUNKS_PATH + "/soa-chunks6.json"),
+	preload(CHUNKS_PATH + "/soa-chunks7.json"),
+	preload(CHUNKS_PATH + "/soa-chunks8.json"),
+	preload(CHUNKS_PATH + "/soa-chunks9.json"),
 ]
 
 
