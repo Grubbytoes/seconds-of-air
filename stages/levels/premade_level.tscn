@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=4 uid="uid://c450vssf4k6np"]
+[gd_scene load_steps=8 format=4 uid="uid://c450vssf4k6np"]
 
 [ext_resource type="PackedScene" uid="uid://cgry3l81jcigo" path="res://entities/characters/player_character/player_character.tscn" id="1_el5fa"]
 [ext_resource type="PackedScene" uid="uid://bgrtof84o7inv" path="res://entities/game_logic/bubble_spawner/bubble_spawner.tscn" id="2_hx351"]
@@ -6,8 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://d24iimo65b3gh" path="res://entities/terrain/terrain_tile_map.tscn" id="3_w46eu"]
 [ext_resource type="PackedScene" uid="uid://cakgg5sj4dcvp" path="res://utilities/session_master/session_master.tscn" id="6_r66gt"]
 [ext_resource type="PackedScene" uid="uid://io75emuhghfk" path="res://entities/ui/hud/hud.tscn" id="7_dd4cx"]
-[ext_resource type="PackedScene" uid="uid://7bb5ec67eq55" path="res://entities/misc_objects/chest/green_chest.tscn" id="7_hx351"]
-[ext_resource type="PackedScene" uid="uid://peg4m3kh721w" path="res://entities/misc_objects/chest/red_chest.tscn" id="8_hx351"]
+[ext_resource type="PackedScene" uid="uid://oj1xjddwxvlu" path="res://entities/misc_objects/geode/geode.tscn" id="7_hx351"]
 
 [node name="PremadeLevel" type="Node2D"]
 metadata/_edit_lock_ = true
@@ -33,16 +32,13 @@ tile_map_data = PackedByteArray("AAAAAA4AAQACAAEAAAAAAA0AAQACAAEAAAAAAAwAAQACAAE
 [node name="UILayer" type="CanvasLayer" parent="."]
 
 [node name="HUD" parent="UILayer" instance=ExtResource("7_dd4cx")]
-offset_left = 1.0
-offset_top = 3.0
-offset_right = 1.0
-offset_bottom = 3.0
+offset_left = -26.0
+offset_top = 9.0
+offset_right = -26.0
+offset_bottom = 9.0
 
-[node name="GreenChest" parent="." instance=ExtResource("7_hx351")]
-position = Vector2(171, 142)
-
-[node name="RedChest" parent="." instance=ExtResource("8_hx351")]
-position = Vector2(222, 133)
+[node name="Geode" parent="." instance=ExtResource("7_hx351")]
+position = Vector2(202, 129)
 
 [connection signal="air_update" from="SessionMaster" to="UILayer/HUD" method="update_air"]
 [connection signal="score_update" from="SessionMaster" to="UILayer/HUD" method="update_score"]
