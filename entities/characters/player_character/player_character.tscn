@@ -51,6 +51,9 @@ texture = ExtResource("5_xohvw")
 position = Vector2(-1, -1)
 script = ExtResource("6_34jly")
 
+[node name="BoundaryCollisionTimer" type="Timer" parent="."]
+
 [connection signal="damage_taken" from="." to="SimpleEffectsPlayer" method="play" binds= [&"flash"]]
 [connection signal="timeout" from="ShotTimer" to="." method="_shot_timer_timeout"]
 [connection signal="body_entered" from="PickupArea" to="PickupArea" method="body_entered_area"]
+[connection signal="timeout" from="BoundaryCollisionTimer" to="." method="kill"]

@@ -1,8 +1,6 @@
 class_name Enemy
 extends BaseCharacter
 
-signal death
-
 @export var health := 1 
 @export var contact_damage := 1
 @export var drop_gems := 0

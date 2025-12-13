@@ -25,16 +25,22 @@ var _shot_ready := true
 var _can_move := true
 
 @onready var shot_timer := $ShotTimer as Timer
+@onready var boundary_collision_timer := $BoundaryCollisionTimer as Timer
 
 @export var crosshair: Node2D
 
 func _physics_process(delta):
+	# pre-move
 	action_move(delta)
 	apply_drag(delta, .2)
 	action_shoot()
 	turn_face(delta)
 
+	# move
 	move_and_slide()
+
+	# post move
+	check_boundary_collision()
 
 
 func action_move(delta_time: float):
@@ -97,6 +103,36 @@ func take_hit(damage := 0, knockback := Vector2.ZERO):
 	_can_move = false
 	var t := get_tree().create_timer(.25)
 	t.timeout.connect(func(): _can_move = true)
+
+
+func check_boundary_collision():
+	var hit = false
+
+	for i in range(get_slide_collision_count()):
+
+		var k := get_slide_collision(i).get_collider() as Node
+
+		if k == null:
+			print("k is not a node")
+		elif k.is_in_group("upper boundary"):
+			hit = true
+
+	if not hit:
+		if not boundary_collision_timer.is_stopped():
+			boundary_collision_timer.stop()
+		return
+	
+	on_boundary_collision()
+
+
+func on_boundary_collision():
+	if boundary_collision_timer.is_stopped():
+		boundary_collision_timer.start()
+
+
+func kill():
+	print("player is dead lol")
+	death.emit()
 
 
 func _shot_timer_timeout():

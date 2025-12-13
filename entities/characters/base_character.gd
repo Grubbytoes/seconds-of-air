@@ -1,6 +1,8 @@
 class_name BaseCharacter
 extends CharacterBody2D
 
+signal death
+
 # Base drag applied to characters
 const BASE_KNOCKBACK = 120
 const BASE_MAX_RECOIL = 100
@@ -23,3 +25,8 @@ func apply_recoil(v: Vector2, override := false):
 	if override:
 		velocity = Vector2.ZERO
 	velocity += v
+
+
+# TODO kill() could be pulled up
+# func kill():
+# 	death.emit()

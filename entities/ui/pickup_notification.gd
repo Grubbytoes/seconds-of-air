@@ -23,3 +23,7 @@ func display_number(i := 0):
 
 func display_text(text := "NONE"):
 	label.text = text
+
+
+func set_colour(c: Color):
+	modulate = c

@@ -10,12 +10,20 @@ func _ready():
 func score_notification(s):
 	var c = PickupNotification.PACKED.instantiate()
 	c.position = _parent.position + (Vector2.UP * 16).rotated(randf() * 2 * PI)
+	
 	_parent.add_sibling(c)
 	c.display_number(s)
+
 
 
 func air_notification(s):
 	var c = PickupNotification.PACKED.instantiate()
 	c.position = _parent.position + (Vector2.UP * 16).rotated(randf() * 2 * PI)
+	
 	_parent.add_sibling(c)
 	c.display_number(s)
+
+	if s < 0:
+		c.set_colour(Color.FIREBRICK)
+	else:
+		c.set_colour(Color.FUCHSIA)
