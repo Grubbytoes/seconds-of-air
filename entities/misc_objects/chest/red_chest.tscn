@@ -1,8 +1,8 @@
-[gd_scene load_steps=13 format=3 uid="uid://7bb5ec67eq55"]
+[gd_scene load_steps=13 format=3 uid="uid://peg4m3kh721w"]
 
-[ext_resource type="Texture2D" uid="uid://vf38dyl820ko" path="res://media/soa-chest.png" id="1_66f7l"]
-[ext_resource type="Script" uid="uid://d0mnlarqkn4wy" path="res://entities/collectables/chest/chest.gd" id="1_ckxmv"]
-[ext_resource type="Texture2D" uid="uid://b5ps4b1bxjawl" path="res://media/star.png" id="3_0n4qp"]
+[ext_resource type="Script" uid="uid://c3o8rcdby5mei" path="res://entities/misc_objects/chest/red_chest.gd" id="2_55ewb"]
+[ext_resource type="Texture2D" uid="uid://vf38dyl820ko" path="res://media/soa-chest.png" id="2_n2kqb"]
+[ext_resource type="Texture2D" uid="uid://b5ps4b1bxjawl" path="res://media/star.png" id="3_rvlq7"]
 
 [sub_resource type="Animation" id="Animation_0n4qp"]
 length = 0.001
@@ -16,7 +16,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [0]
+"values": [3]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -58,7 +58,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.2),
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
-"values": [6, 0]
+"values": [7, 3]
 }
 
 [sub_resource type="Animation" id="Animation_ckxmv"]
@@ -75,7 +75,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.3, 2.25),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 1,
-"values": [0, 1, 2]
+"values": [3, 4, 5]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -108,7 +108,7 @@ tracks/3/path = NodePath(".")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
-"times": PackedFloat32Array(0.3, 5),
+"times": PackedFloat32Array(0.3, 4.95),
 "transitions": PackedFloat32Array(1, 1),
 "values": [{
 "args": [],
@@ -150,13 +150,15 @@ height = 42.0
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_bn5ne"]
 size = Vector2(26, 19)
 
-[node name="GreenChest" type="StaticBody2D"]
+[node name="RedChest" type="StaticBody2D"]
 collision_mask = 0
-script = ExtResource("1_ckxmv")
+script = ExtResource("2_55ewb")
+drop_gems = 12
 
 [node name="Sprite" type="Sprite2D" parent="."]
-texture = ExtResource("1_66f7l")
+texture = ExtResource("2_n2kqb")
 hframes = 8
+frame = 3
 
 [node name="Anim" type="AnimationPlayer" parent="."]
 libraries = {
@@ -167,7 +169,7 @@ libraries = {
 z_index = -2
 emitting = false
 amount = 6
-texture = ExtResource("3_0n4qp")
+texture = ExtResource("3_rvlq7")
 lifetime = 0.5
 one_shot = true
 explosiveness = 1.0

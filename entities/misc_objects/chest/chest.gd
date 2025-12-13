@@ -70,12 +70,12 @@ func stop_invincibility():
 		queue_free()
 
 
-static func new_random_chest() -> Chest:
+static func create_random_chest() -> Chest:
 	var packed: PackedScene
 
 	if randf() < 0.75:
-		packed = preload("res://entities/collectables/chest/green_chest.tscn")
+		packed = preload("res://entities/misc_objects/chest/green_chest.tscn")
 	else:
-		packed = preload("res://entities/collectables/chest/red_chest.tscn")
+		packed = preload("res://entities/misc_objects/chest/red_chest.tscn")
 	
 	return packed.instantiate()

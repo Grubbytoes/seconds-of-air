@@ -1,1 +1,29 @@
-{"map": ["             ssssssss   ", "             ssssssss g ", "                  sss   ", " g  g  g          sss g ", "                  sss   ", "              g       g ", "xxxssssssss        b    ", "xxxssssssss             ", "        sss   g   sss   ", " g g g  sss       sss   ", "        sss   b   sss   ", " g ssssssss   g   sss   ", "   ssssssss       sss   ", " g ssssssss       sss   ", "               ssssss   ", " g g g   b     ssssss   ", "                        ", "    sssss     g  g  g   ", "    sssss               ", "    sssss      ssssssxxx", "               ssssssxxx", "               sss      ", "xxxxxxxxxxxxxxxsss      ", "xxxxxxxxxxxxxxxsss      "], "terrain_count": 140}
+{
+	"map": [
+		"             ssssssss   ",
+		"             ssssssss g ",
+		"                  sss   ",
+		" g  g  g          sss g ",
+		"                  sss   ",
+		"              g       g ",
+		"xxxssssssss        b    ",
+		"xxxssssssss             ",
+		"        sss   g   sss   ",
+		" g g g  sss       sss   ",
+		"        sss   b   sss   ",
+		" g ssssssss   g   sss   ",
+		"   ssssssss       sss   ",
+		" g ssssssss       sss   ",
+		"               ssssss   ",
+		" g g g   b     ssssss   ",
+		"                        ",
+		"    sssss     g  g  g   ",
+		"    sssss               ",
+		"    sssss      ssssssxxx",
+		"               ssssssxxx",
+		"               sss      ",
+		"xxxxxxxxxxxxxxxsss      ",
+		"xxxxxxxxxxxxxxxsss      "
+	],
+	"terrain_count": 140.0
+}

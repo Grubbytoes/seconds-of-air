@@ -49,7 +49,7 @@ func build_chunk(chunk: Chunk, y_offset = 0):
 			elif o == Chunk.ChunkObject.DESTRUCTIBLE_TILE:
 				ter.place_destructible_tile(v + v_offset)
 			elif o == Chunk.ChunkObject.GEM:
-				var g = Gem.new_random_instance()
+				var g = Gem.create_random_gem()
 				g.position = new_object_position 
 				g.position += Vector2(8, 8)
 				ter.add_child(g)
@@ -63,11 +63,16 @@ func build_chunk(chunk: Chunk, y_offset = 0):
 				asb.position = new_object_position 
 				asb.position += Vector2(8, 8)
 				ter.add_child(asb)
-			elif 0 == Chunk.ChunkObject.CHEST:
-				var ch := Chest.new_random_chest()
+			elif o == Chunk.ChunkObject.CHEST:
+				var ch := Chest.create_random_chest()
 				ch.position = new_object_position
 				ch.position += Vector2(16, 16)
 				ter.add_child(ch)
+			elif o == Chunk.ChunkObject.GEODE:
+				var g := Geode.create_geode()
+				g.position = new_object_position
+				g.position += Vector2(16, 16)
+				ter.add_child(g)
 			
 			# moving along the row (backwards if flipped)
 			if chunk.flipped_h:

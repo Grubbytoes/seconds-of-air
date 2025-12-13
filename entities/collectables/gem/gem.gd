@@ -63,7 +63,7 @@ func get_value() -> int:
 
 
 static func drop_random(drop_parent: Node2D, drop_position: Vector2, initial_motion := Vector2.ZERO, spread := 0.0, ghost_period := 0.5) -> void:
-	var d = Gem.new_random_instance()
+	var d = Gem.create_random_gem()
 	d.position = drop_position
 	d.motion = initial_motion
 
@@ -80,7 +80,7 @@ static func drop_random(drop_parent: Node2D, drop_position: Vector2, initial_mot
 	drop_parent.add_child(d)
 
 
-static func new_random_instance() -> Gem:
+static func create_random_gem() -> Gem:
 	var r = randi() % 31
 	const PACKED := preload("res://entities/collectables/gem/gem.tscn")
 	var g := PACKED.instantiate()

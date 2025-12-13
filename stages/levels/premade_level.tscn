@@ -6,8 +6,8 @@
 [ext_resource type="PackedScene" uid="uid://d24iimo65b3gh" path="res://entities/terrain/terrain_tile_map.tscn" id="3_w46eu"]
 [ext_resource type="PackedScene" uid="uid://cakgg5sj4dcvp" path="res://utilities/session_master/session_master.tscn" id="6_r66gt"]
 [ext_resource type="PackedScene" uid="uid://io75emuhghfk" path="res://entities/ui/hud/hud.tscn" id="7_dd4cx"]
-[ext_resource type="PackedScene" uid="uid://7bb5ec67eq55" path="res://entities/collectables/chest/green_chest.tscn" id="7_hx351"]
-[ext_resource type="PackedScene" uid="uid://peg4m3kh721w" path="res://entities/collectables/chest/red_chest.tscn" id="8_hx351"]
+[ext_resource type="PackedScene" uid="uid://7bb5ec67eq55" path="res://entities/misc_objects/chest/green_chest.tscn" id="7_hx351"]
+[ext_resource type="PackedScene" uid="uid://peg4m3kh721w" path="res://entities/misc_objects/chest/red_chest.tscn" id="8_hx351"]
 
 [node name="PremadeLevel" type="Node2D"]
 metadata/_edit_lock_ = true
