@@ -60,3 +60,16 @@ func load(d: Dictionary) -> bool:
 
 func flip_h():
 	flipped_h = !flipped_h
+
+
+static func create_empty() -> Chunk:
+	var e = Chunk.new()
+	
+	e.rows.resize(LENGTH)
+
+	for i in range(LENGTH):
+		e.rows[i] = PackedInt32Array()
+		e.rows[i].resize(LENGTH)
+		e.rows[i].fill(ChunkObject.EMPTY)
+
+	return e

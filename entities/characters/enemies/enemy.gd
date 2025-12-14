@@ -22,6 +22,8 @@ func kill():
 	if not _alive:
 		return
 
+	set_collision_layer_value(4, false)
+	set_collision_mask_value(2, false)
 	death.emit()
 	_alive = false
 

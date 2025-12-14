@@ -14,6 +14,9 @@ func _physics_process(delta):
 
 
 func hit(normal := Vector2.ZERO):
+	if richness <= 0:
+		return
+
 	const DROP_RADIUS := sqrt(16 * 16 + 16 * 16) + 8
 	var drop_parent := get_parent()
 	var richness_extracted := 1
