@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=4 uid="uid://vm8hq88hq8jr"]
+[gd_scene load_steps=10 format=4 uid="uid://vm8hq88hq8jr"]
 
 [ext_resource type="PackedScene" uid="uid://cgry3l81jcigo" path="res://entities/characters/player_character/player_character.tscn" id="1_acn0u"]
 [ext_resource type="Script" uid="uid://k3udx8siw08h" path="res://stages/levels/main_level.gd" id="1_ierym"]
@@ -6,6 +6,7 @@
 [ext_resource type="Script" uid="uid://b3ojbimvxhv1f" path="res://utilities/chunks/chunk_builder.gd" id="5_0uelv"]
 [ext_resource type="PackedScene" uid="uid://bvqtn58j0hpn8" path="res://entities/game_logic/scroller/scroller.tscn" id="5_1auff"]
 [ext_resource type="PackedScene" uid="uid://bgrtof84o7inv" path="res://entities/game_logic/bubble_spawner/bubble_spawner.tscn" id="5_n5hir"]
+[ext_resource type="PackedScene" uid="uid://c64wla7gq22gd" path="res://entities/game_logic/player_onscreen_enforcer/player_onscreen_enforcer.tscn" id="6_1k2w0"]
 [ext_resource type="PackedScene" uid="uid://io75emuhghfk" path="res://entities/ui/hud/hud.tscn" id="7_n5hir"]
 [ext_resource type="PackedScene" uid="uid://cakgg5sj4dcvp" path="res://utilities/session_master/session_master.tscn" id="8_8lwba"]
 
@@ -23,6 +24,9 @@ char = NodePath("../PlayerCharacter")
 dynamic_scroll_speed = false
 
 [node name="BubbleSpawner" parent="Scroller" instance=ExtResource("5_n5hir")]
+
+[node name="PlayerOnscreenEnforcer" parent="Scroller" node_paths=PackedStringArray("char") instance=ExtResource("6_1k2w0")]
+char = NodePath("../../PlayerCharacter")
 
 [node name="ChunkBuilder" type="Node" parent="." node_paths=PackedStringArray("ter")]
 script = ExtResource("5_0uelv")

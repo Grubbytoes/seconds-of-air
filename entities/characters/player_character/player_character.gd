@@ -40,8 +40,7 @@ func _physics_process(delta):
 	move_and_slide()
 
 	# post move
-	check_boundary_collision()
-
+	# none
 
 func action_move(delta_time: float):
 	if not _can_move:
@@ -84,8 +83,6 @@ func shoot():
 
 
 func turn_face(delta: float):
-	const SNAP = deg_to_rad(1)
-
 	if current_state != PlayerState.SHOOT:
 		_facing_dir = _thrust_dir
 
@@ -103,31 +100,6 @@ func take_hit(damage := 0, knockback := Vector2.ZERO):
 	_can_move = false
 	var t := get_tree().create_timer(.25)
 	t.timeout.connect(func(): _can_move = true)
-
-
-func check_boundary_collision():
-	var hit = false
-
-	for i in range(get_slide_collision_count()):
-
-		var k := get_slide_collision(i).get_collider() as Node
-
-		if k == null:
-			print("k is not a node")
-		elif k.is_in_group("upper boundary"):
-			hit = true
-
-	if not hit:
-		if not boundary_collision_timer.is_stopped():
-			boundary_collision_timer.stop()
-		return
-	
-	on_boundary_collision()
-
-
-func on_boundary_collision():
-	if boundary_collision_timer.is_stopped():
-		boundary_collision_timer.start()
 
 
 func kill():

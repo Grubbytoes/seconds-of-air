@@ -28,5 +28,5 @@ func apply_recoil(v: Vector2, override := false):
 
 
 # TODO kill() could be pulled up
-# func kill():
-# 	death.emit()
+func kill():
+	death.emit()
