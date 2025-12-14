@@ -21,7 +21,7 @@ static var _chunk_json: Array[JSON] = [
 ]
 
 static var _special_chunk_json: Dictionary[String, JSON] = {
-	# "chest" : preload(CHUNKS_PATH + "/chest-chunk.json")
+	"chest" : preload(CHUNKS_PATH + "/soa-chest.json")
 }
 
 

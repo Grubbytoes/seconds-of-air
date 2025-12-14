@@ -6,7 +6,7 @@ extends Object
 var prev_chunk: Chunk
 var chunk_count := 0
 
-var _next_chest_at := 4
+var _next_chest_at := 3
 
 # returns the next chunk, and updates previous chunk
 func next_chunk() -> Chunk:
