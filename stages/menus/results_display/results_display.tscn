@@ -1,0 +1,88 @@
+[gd_scene load_steps=4 format=3 uid="uid://bwauwjc58tq80"]
+
+[ext_resource type="Script" uid="uid://dgnvwkwusoubi" path="res://stages/menus/results_display/results_display.gd" id="1_tjx1t"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_de46g"]
+font_size = 64
+
+[sub_resource type="LabelSettings" id="LabelSettings_tjx1t"]
+font_size = 24
+
+[node name="ResultsDisplay" type="Node2D" node_paths=PackedStringArray("score_label", "time_label")]
+script = ExtResource("1_tjx1t")
+score_label = NodePath("Control/VBoxContainer/HBoxContainer/ScoreLabel")
+time_label = NodePath("Control/VBoxContainer/HBoxContainer2/TimeLabel")
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 9
+anchor_bottom = 1.0
+offset_right = 1152.0
+offset_bottom = 648.0
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -183.5
+offset_top = -82.0
+offset_right = 183.5
+offset_bottom = 82.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="Control/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "GAME OVER"
+label_settings = SubResource("LabelSettings_de46g")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Control/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label2" type="Label" parent="Control/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "TOTAL SCORE: "
+label_settings = SubResource("LabelSettings_tjx1t")
+
+[node name="ScoreLabel" type="Label" parent="Control/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 10
+text = "0000"
+label_settings = SubResource("LabelSettings_tjx1t")
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="Control/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label2" type="Label" parent="Control/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "TIME PLAYED: "
+label_settings = SubResource("LabelSettings_tjx1t")
+
+[node name="TimeLabel" type="Label" parent="Control/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 10
+text = "00:00"
+label_settings = SubResource("LabelSettings_tjx1t")
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="Control/VBoxContainer"]
+layout_mode = 2
+
+[node name="MenuButton" type="Button" parent="Control/VBoxContainer/HBoxContainer3"]
+layout_mode = 2
+size_flags_horizontal = 0
+text = "MENU"
+
+[node name="PlayAgainButton" type="Button" parent="Control/VBoxContainer/HBoxContainer3"]
+layout_mode = 2
+size_flags_horizontal = 10
+text = "PLAY AGAIN"
+
+[connection signal="pressed" from="Control/VBoxContainer/HBoxContainer3/MenuButton" to="." method="on_menu_button_pressed"]
+[connection signal="pressed" from="Control/VBoxContainer/HBoxContainer3/PlayAgainButton" to="." method="on_play_again_button_pressed"]

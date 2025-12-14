@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=4 uid="uid://c450vssf4k6np"]
+[gd_scene load_steps=8 format=4 uid="uid://c450vssf4k6np"]
 
 [ext_resource type="PackedScene" uid="uid://cgry3l81jcigo" path="res://entities/characters/player_character/player_character.tscn" id="1_el5fa"]
 [ext_resource type="PackedScene" uid="uid://bgrtof84o7inv" path="res://entities/game_logic/bubble_spawner/bubble_spawner.tscn" id="2_hx351"]
@@ -6,15 +6,15 @@
 [ext_resource type="PackedScene" uid="uid://d24iimo65b3gh" path="res://entities/terrain/terrain_tile_map.tscn" id="3_w46eu"]
 [ext_resource type="PackedScene" uid="uid://cakgg5sj4dcvp" path="res://utilities/session_master/session_master.tscn" id="6_r66gt"]
 [ext_resource type="PackedScene" uid="uid://io75emuhghfk" path="res://entities/ui/hud/hud.tscn" id="7_dd4cx"]
-[ext_resource type="PackedScene" uid="uid://b7ubsu4vtw8y" path="res://entities/characters/enemies/slugbug/slugbug.tscn" id="8_hx351"]
-[ext_resource type="PackedScene" uid="uid://w5aqwkepan0s" path="res://entities/characters/enemies/angry_slugbug/angry_slugbug.tscn" id="8_qyqkd"]
-[ext_resource type="PackedScene" uid="uid://cm7n2f2jyn2hf" path="res://entities/collectables/gem/gem.tscn" id="9_qyqkd"]
+[ext_resource type="PackedScene" uid="uid://oj1xjddwxvlu" path="res://entities/misc_objects/geode/geode.tscn" id="7_hx351"]
 
 [node name="PremadeLevel" type="Node2D"]
-position = Vector2(2, 2)
+metadata/_edit_lock_ = true
 
 [node name="Scroller" parent="." node_paths=PackedStringArray("char") instance=ExtResource("2_iaslq")]
 char = NodePath("../PlayerCharacter")
+scroll_speed = 0
+dynamic_scroll_speed = false
 metadata/_edit_lock_ = true
 
 [node name="BubbleSpawner" parent="Scroller" instance=ExtResource("2_hx351")]
@@ -32,40 +32,13 @@ tile_map_data = PackedByteArray("AAAAAA4AAQACAAEAAAAAAA0AAQACAAEAAAAAAAwAAQACAAE
 [node name="UILayer" type="CanvasLayer" parent="."]
 
 [node name="HUD" parent="UILayer" instance=ExtResource("7_dd4cx")]
-offset_left = 1.0
-offset_top = 3.0
-offset_right = 1.0
-offset_bottom = 3.0
+offset_left = -26.0
+offset_top = 9.0
+offset_right = -26.0
+offset_bottom = 9.0
 
-[node name="Slugbug" parent="." instance=ExtResource("8_hx351")]
-position = Vector2(64, 384)
-
-[node name="Slugbug2" parent="." instance=ExtResource("8_hx351")]
-position = Vector2(298, 66)
-
-[node name="Gems" type="Node2D" parent="."]
-
-[node name="Gem" parent="Gems" instance=ExtResource("9_qyqkd")]
-position = Vector2(218, 119)
-
-[node name="Gem2" parent="Gems" instance=ExtResource("9_qyqkd")]
-position = Vector2(188, 119)
-type = 0
-
-[node name="Gem3" parent="Gems" instance=ExtResource("9_qyqkd")]
-position = Vector2(227, 144)
-type = 3
-
-[node name="Gem4" parent="Gems" instance=ExtResource("9_qyqkd")]
-position = Vector2(176, 142)
-type = 2
-
-[node name="Gem5" parent="Gems" instance=ExtResource("9_qyqkd")]
-position = Vector2(199, 158)
-type = 1
-
-[node name="Slugbug3" parent="." instance=ExtResource("8_qyqkd")]
-position = Vector2(203, 184)
+[node name="Geode" parent="." instance=ExtResource("7_hx351")]
+position = Vector2(202, 129)
 
 [connection signal="air_update" from="SessionMaster" to="UILayer/HUD" method="update_air"]
 [connection signal="score_update" from="SessionMaster" to="UILayer/HUD" method="update_score"]

@@ -1,0 +1,59 @@
+[gd_scene load_steps=8 format=3 uid="uid://c64wla7gq22gd"]
+
+[ext_resource type="Script" uid="uid://cugfyqn6lrbbw" path="res://entities/game_logic/player_onscreen_enforcer/player_onscreen_enforcer.gd" id="1_kv806"]
+[ext_resource type="Texture2D" uid="uid://dkql2elhl6vcu" path="res://media/offscreen-arrow.png" id="2_elh4n"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jxbsy"]
+atlas = ExtResource("2_elh4n")
+region = Rect2(96, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_003ek"]
+atlas = ExtResource("2_elh4n")
+region = Rect2(144, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vpf2b"]
+atlas = ExtResource("2_elh4n")
+region = Rect2(0, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2610l"]
+atlas = ExtResource("2_elh4n")
+region = Rect2(48, 0, 48, 48)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_e7urr"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jxbsy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_003ek")
+}],
+"loop": true,
+"name": &"down",
+"speed": 4.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vpf2b")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2610l")
+}],
+"loop": true,
+"name": &"up",
+"speed": 4.0
+}]
+
+[node name="PlayerOnscreenEnforcer" type="Node2D"]
+script = ExtResource("1_kv806")
+
+[node name="Timer" type="Timer" parent="."]
+
+[node name="ArrowSprite" type="AnimatedSprite2D" parent="."]
+visible = false
+position = Vector2(112, 49)
+sprite_frames = SubResource("SpriteFrames_e7urr")
+animation = &"down"
+frame_progress = 0.465548
+
+[connection signal="timeout" from="Timer" to="." method="on_timer_timeout"]

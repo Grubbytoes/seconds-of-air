@@ -12,8 +12,8 @@ enum PlayerState {
 const MOVE_SPEED = 125
 const MOVE_ACCELERATION = 200
 const SHOT_RECOIL_STRENGTH = 10
-const SHOT_VELOCITY = 450
-const SHOT_PERIOD = .2
+const SHOT_VELOCITY = 350
+const SHOT_PERIOD = 2.0 / 11
 
 static var packed_projectile = preload("res://entities/projectiles/player_projectile/player_projectile.tscn")
 
@@ -25,17 +25,22 @@ var _shot_ready := true
 var _can_move := true
 
 @onready var shot_timer := $ShotTimer as Timer
+@onready var boundary_collision_timer := $BoundaryCollisionTimer as Timer
 
 @export var crosshair: Node2D
 
 func _physics_process(delta):
+	# pre-move
 	action_move(delta)
 	apply_drag(delta, .2)
 	action_shoot()
 	turn_face(delta)
 
+	# move
 	move_and_slide()
 
+	# post move
+	# none
 
 func action_move(delta_time: float):
 	if not _can_move:
@@ -69,7 +74,7 @@ func shoot():
 	# shoot projectile
 	var new_projectile = packed_projectile.instantiate() as Projectile
 	add_sibling(new_projectile)
-	new_projectile.launch(position, _facing_dir * SHOT_VELOCITY)
+	new_projectile.launch(position, _facing_dir * SHOT_VELOCITY, deg_to_rad(10))
 	apply_recoil(-_facing_dir * SHOT_RECOIL_STRENGTH)
 
 	# start cooldown
@@ -78,13 +83,11 @@ func shoot():
 
 
 func turn_face(delta: float):
-	const SNAP = deg_to_rad(1)
-
 	if current_state != PlayerState.SHOOT:
 		_facing_dir = _thrust_dir
 
 	if crosshair:
-		crosshair.position = crosshair.position.slerp(_facing_dir * 48, delta * 10)
+		crosshair.position = crosshair.position.slerp(_facing_dir * 64, delta * 10)
 
 
 # * override
@@ -97,6 +100,11 @@ func take_hit(damage := 0, knockback := Vector2.ZERO):
 	_can_move = false
 	var t := get_tree().create_timer(.25)
 	t.timeout.connect(func(): _can_move = true)
+
+
+func kill():
+	print("player is dead lol")
+	death.emit()
 
 
 func _shot_timer_timeout():

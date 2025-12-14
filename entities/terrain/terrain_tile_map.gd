@@ -43,10 +43,8 @@ func destroy_tile(coords: Vector2) -> bool:
 	# TODO make better lol
 	# random drop
 	if randi() % 8 == 0:
-		var g = Gem.new_random_instance()
-		g.position = coords * 16 + Vector2(8, 8)
-		add_sibling(g)
-
+		var drop_position = coords * 16 + Vector2(8, 8)
+		Gem.drop_random(self, drop_position, Vector2(50, 0), 2 * PI)
 	# play effects
 	var vfx := packed_destroy_effect.instantiate()
 	vfx.position = coords * 16

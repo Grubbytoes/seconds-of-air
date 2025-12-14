@@ -13,10 +13,15 @@ enum Type {
 
 @onready var sprite: AnimatedSprite2D = $Sprite
 
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	update_sprite_animation()
 
+
+func _physics_process(delta):
+	move(delta)
+	
 
 # * OVERRIDE
 func on_pickup():
@@ -57,7 +62,25 @@ func get_value() -> int:
 	return 0
 
 
-static func new_random_instance() -> BaseCollectable:
+static func drop_random(drop_parent: Node2D, drop_position: Vector2, initial_motion := Vector2.ZERO, spread := 0.0, ghost_period := 0.5) -> void:
+	var d = Gem.create_random_gem()
+	d.position = drop_position
+	d.motion = initial_motion
+
+	if spread > 0:
+		var r = randf() * spread - spread / 2
+		d.motion = d.motion.rotated(r)
+
+	if ghost_period > 0:
+		var timer = drop_parent.get_tree().create_timer(ghost_period)
+
+		d.set_collision_layer_value(5, false)
+		timer.timeout.connect(d.set_collision_layer_value.bind(5, true))
+	
+	drop_parent.add_child(d)
+
+
+static func create_random_gem() -> Gem:
 	var r = randi() % 31
 	const PACKED := preload("res://entities/collectables/gem/gem.tscn")
 	var g := PACKED.instantiate()
@@ -74,4 +97,3 @@ static func new_random_instance() -> BaseCollectable:
 		g.type = Type.TOPAZ
 	
 	return g
-
