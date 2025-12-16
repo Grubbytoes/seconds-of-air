@@ -1,0 +1,6 @@
+[gd_resource type="Theme" load_steps=2 format=3 uid="uid://rojs5goi8lae"]
+
+[ext_resource type="FontFile" uid="uid://dfkpwm4ql3nho" path="res://media/pixel-basic.ttf" id="1_2dfpq"]
+
+[resource]
+default_font = ExtResource("1_2dfpq")

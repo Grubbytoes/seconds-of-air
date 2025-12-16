@@ -6,7 +6,5 @@
 .vscode/
 
 # Large media files
-*.png
-*.jpg
-*.svg
-*.zip
+media/*
+!media/*.import
