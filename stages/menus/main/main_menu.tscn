@@ -1,10 +1,16 @@
-[gd_scene load_steps=4 format=3 uid="uid://coq7snaa2p0e2"]
+[gd_scene load_steps=7 format=3 uid="uid://coq7snaa2p0e2"]
 
 [ext_resource type="Script" uid="uid://x1xgmb55v2cv" path="res://stages/menus/main/main_menu.gd" id="1_yfx2s"]
 [ext_resource type="Theme" uid="uid://rojs5goi8lae" path="res://entities/ui/base_theme.tres" id="2_xt180"]
+[ext_resource type="Texture2D" uid="uid://tt833i28nsan" path="res://stages/menus/main/play_icon.tres" id="3_1wmmv"]
+[ext_resource type="Texture2D" uid="uid://crtclq4hrlq0m" path="res://media/icons.png" id="4_4utl4"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_1gbm5"]
 font_size = 64
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vfodg"]
+atlas = ExtResource("4_4utl4")
+region = Rect2(64, 0, 32, 32)
 
 [node name="MainMenu" type="Node2D"]
 script = ExtResource("1_yfx2s")
@@ -32,15 +38,42 @@ offset_bottom = 44.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Label" type="Label" parent="Control/VBoxContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="Control/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 32
+theme_override_constants/margin_top = 32
+theme_override_constants/margin_right = 32
+theme_override_constants/margin_bottom = 32
+
+[node name="Label" type="Label" parent="Control/VBoxContainer/MarginContainer"]
 layout_mode = 2
 text = "SECONDS OF AIR"
 label_settings = SubResource("LabelSettings_1gbm5")
 
-[node name="Button" type="Button" parent="Control/VBoxContainer"]
+[node name="MarginContainer2" type="MarginContainer" parent="Control/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 64
+theme_override_constants/margin_right = 64
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Control/VBoxContainer/MarginContainer2"]
+layout_mode = 2
+
+[node name="Button" type="Button" parent="Control/VBoxContainer/MarginContainer2/HBoxContainer"]
+custom_minimum_size = Vector2(96, 96)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 0
-text = "START GAME"
+icon = ExtResource("3_1wmmv")
+icon_alignment = 1
+expand_icon = true
 
-[connection signal="pressed" from="Control/VBoxContainer/Button" to="." method="on_start_button_pressed"]
+[node name="Button2" type="Button" parent="Control/VBoxContainer/MarginContainer2/HBoxContainer"]
+custom_minimum_size = Vector2(96, 96)
+layout_mode = 2
+size_flags_horizontal = 10
+size_flags_vertical = 0
+icon = SubResource("AtlasTexture_vfodg")
+icon_alignment = 1
+expand_icon = true
+
+[connection signal="pressed" from="Control/VBoxContainer/MarginContainer2/HBoxContainer/Button" to="." method="on_start_button_pressed"]

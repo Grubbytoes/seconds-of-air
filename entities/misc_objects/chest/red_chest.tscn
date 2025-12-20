@@ -1,8 +1,9 @@
-[gd_scene load_steps=13 format=3 uid="uid://peg4m3kh721w"]
+[gd_scene load_steps=14 format=3 uid="uid://peg4m3kh721w"]
 
 [ext_resource type="Script" uid="uid://c3o8rcdby5mei" path="res://entities/misc_objects/chest/red_chest.gd" id="2_55ewb"]
 [ext_resource type="Texture2D" uid="uid://vf38dyl820ko" path="res://media/soa-chest.png" id="2_n2kqb"]
 [ext_resource type="Texture2D" uid="uid://b5ps4b1bxjawl" path="res://media/star.png" id="3_rvlq7"]
+[ext_resource type="PackedScene" uid="uid://b2uqsbphdff7u" path="res://utilities/off_screen_timeout/off_screen_timout.tscn" id="4_46nkl"]
 
 [sub_resource type="Animation" id="Animation_0n4qp"]
 length = 0.001
@@ -187,4 +188,7 @@ shape = SubResource("CapsuleShape2D_0n4qp")
 position = Vector2(0, 1.5)
 shape = SubResource("RectangleShape2D_bn5ne")
 
+[node name="OffScreenTimer" parent="." instance=ExtResource("4_46nkl")]
+
 [connection signal="body_entered" from="Trigger" to="." method="trigger_body_entered"]
+[connection signal="off_screen_timeout" from="OffScreenTimer" to="." method="queue_free"]

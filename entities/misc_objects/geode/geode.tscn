@@ -1,7 +1,8 @@
-[gd_scene load_steps=12 format=3 uid="uid://oj1xjddwxvlu"]
+[gd_scene load_steps=13 format=3 uid="uid://oj1xjddwxvlu"]
 
 [ext_resource type="Script" uid="uid://dgf8ogqc4m0j8" path="res://entities/misc_objects/geode/geode.gd" id="1_le1gj"]
 [ext_resource type="Texture2D" uid="uid://bsyx7k4ouss00" path="res://media/geode.png" id="1_s0ibo"]
+[ext_resource type="PackedScene" uid="uid://b2uqsbphdff7u" path="res://utilities/off_screen_timeout/off_screen_timout.tscn" id="3_loh46"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_le1gj"]
 atlas = ExtResource("1_s0ibo")
@@ -106,3 +107,7 @@ frame_progress = 1.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_s0ibo")
+
+[node name="OffScreenTimer" parent="." instance=ExtResource("3_loh46")]
+
+[connection signal="off_screen_timeout" from="OffScreenTimer" to="." method="queue_free"]

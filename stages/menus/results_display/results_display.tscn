@@ -1,13 +1,17 @@
-[gd_scene load_steps=5 format=3 uid="uid://bwauwjc58tq80"]
+[gd_scene load_steps=8 format=3 uid="uid://bwauwjc58tq80"]
 
 [ext_resource type="Script" uid="uid://dgnvwkwusoubi" path="res://stages/menus/results_display/results_display.gd" id="1_tjx1t"]
 [ext_resource type="Theme" uid="uid://rojs5goi8lae" path="res://entities/ui/base_theme.tres" id="2_0qsv5"]
+[ext_resource type="Texture2D" uid="uid://v83t4yugfbf" path="res://stages/menus/results_display/home_icon.tres" id="3_vbsht"]
+[ext_resource type="Texture2D" uid="uid://baxv1j8ag2ln4" path="res://stages/menus/results_display/results_icon.tres" id="4_0vhly"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_de46g"]
 font_size = 64
 
 [sub_resource type="LabelSettings" id="LabelSettings_tjx1t"]
 font_size = 24
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_0qsv5"]
 
 [node name="ResultsDisplay" type="Node2D" node_paths=PackedStringArray("score_label", "time_label")]
 script = ExtResource("1_tjx1t")
@@ -37,7 +41,14 @@ offset_bottom = 82.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Label" type="Label" parent="Control/VBoxContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="Control/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 32
+theme_override_constants/margin_top = 32
+theme_override_constants/margin_right = 32
+theme_override_constants/margin_bottom = 32
+
+[node name="Label" type="Label" parent="Control/VBoxContainer/MarginContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
 text = "GAME OVER"
@@ -73,18 +84,29 @@ size_flags_horizontal = 10
 text = "00:00"
 label_settings = SubResource("LabelSettings_tjx1t")
 
+[node name="HSeparator" type="HSeparator" parent="Control/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 16
+theme_override_styles/separator = SubResource("StyleBoxEmpty_0qsv5")
+
 [node name="HBoxContainer3" type="HBoxContainer" parent="Control/VBoxContainer"]
 layout_mode = 2
 
 [node name="MenuButton" type="Button" parent="Control/VBoxContainer/HBoxContainer3"]
+custom_minimum_size = Vector2(96, 96)
 layout_mode = 2
 size_flags_horizontal = 0
-text = "MENU"
+icon = ExtResource("3_vbsht")
+icon_alignment = 1
+expand_icon = true
 
 [node name="PlayAgainButton" type="Button" parent="Control/VBoxContainer/HBoxContainer3"]
+custom_minimum_size = Vector2(96, 96)
 layout_mode = 2
 size_flags_horizontal = 10
-text = "PLAY AGAIN"
+icon = ExtResource("4_0vhly")
+icon_alignment = 1
+expand_icon = true
 
 [connection signal="pressed" from="Control/VBoxContainer/HBoxContainer3/MenuButton" to="." method="on_menu_button_pressed"]
 [connection signal="pressed" from="Control/VBoxContainer/HBoxContainer3/PlayAgainButton" to="." method="on_play_again_button_pressed"]
