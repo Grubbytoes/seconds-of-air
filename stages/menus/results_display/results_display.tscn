@@ -13,10 +13,12 @@ font_size = 24
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_0qsv5"]
 
-[node name="ResultsDisplay" type="Node2D" node_paths=PackedStringArray("score_label", "time_label")]
+[node name="ResultsDisplay" type="Node2D" node_paths=PackedStringArray("score_label", "time_label", "bonus_label", "final_score_label")]
 script = ExtResource("1_tjx1t")
 score_label = NodePath("Control/VBoxContainer/HBoxContainer/ScoreLabel")
 time_label = NodePath("Control/VBoxContainer/HBoxContainer2/TimeLabel")
+bonus_label = NodePath("Control/VBoxContainer/Label3")
+final_score_label = NodePath("Control/VBoxContainer/HBoxContainer4/FinalScore")
 
 [node name="Control" type="Control" parent="."]
 layout_mode = 3
@@ -60,7 +62,7 @@ layout_mode = 2
 [node name="Label2" type="Label" parent="Control/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
-text = "TOTAL SCORE: "
+text = "RAW SCORE: "
 label_settings = SubResource("LabelSettings_tjx1t")
 
 [node name="ScoreLabel" type="Label" parent="Control/VBoxContainer/HBoxContainer"]
@@ -82,6 +84,32 @@ label_settings = SubResource("LabelSettings_tjx1t")
 layout_mode = 2
 size_flags_horizontal = 10
 text = "00:00"
+label_settings = SubResource("LabelSettings_tjx1t")
+
+[node name="Label3" type="Label" parent="Control/VBoxContainer"]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 4
+label_settings = SubResource("LabelSettings_tjx1t")
+
+[node name="HSeparator2" type="HSeparator" parent="Control/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 16
+theme_override_styles/separator = SubResource("StyleBoxEmpty_0qsv5")
+
+[node name="HBoxContainer4" type="HBoxContainer" parent="Control/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label2" type="Label" parent="Control/VBoxContainer/HBoxContainer4"]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "FINAL SCORE: "
+label_settings = SubResource("LabelSettings_tjx1t")
+
+[node name="FinalScore" type="Label" parent="Control/VBoxContainer/HBoxContainer4"]
+layout_mode = 2
+size_flags_horizontal = 10
+text = "0000"
 label_settings = SubResource("LabelSettings_tjx1t")
 
 [node name="HSeparator" type="HSeparator" parent="Control/VBoxContainer"]

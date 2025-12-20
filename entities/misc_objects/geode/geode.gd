@@ -32,6 +32,7 @@ func hit(normal := Vector2.ZERO):
 
 	if richness <= 0:
 		kill()
+		SoundManager.play_sound("object_kill")
 		return
 		
 	SoundManager.play_sound("object_hit")

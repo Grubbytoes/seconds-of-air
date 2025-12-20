@@ -63,6 +63,8 @@ func end_game():
 
 	results = SessionResults.new()
 
-	results.score = score
+	results.raw_score = score
 	results.time = time
+	results.calculate_final_score()
+	
 	session_ended.emit(results)
