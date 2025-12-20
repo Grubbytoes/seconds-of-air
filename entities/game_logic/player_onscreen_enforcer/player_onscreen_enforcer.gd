@@ -51,6 +51,8 @@ func char_exited_screen():
 		arrow_sprite.play("up")
 		arrow_sprite.position.y = 26
 
+	SoundManager.play_sound("offscreen_warning")
+
 
 func on_timer_timeout() -> void:
 	char_offscreen_timeout.emit()

@@ -54,8 +54,12 @@ func tick():
 
 	if 0 >= air:
 		end_game()
+		return
 	else:
 		tick_timer.start(1)
+
+	if air <= 10:
+		SoundManager.play_sound("time_warning")
 
 
 func end_game():
