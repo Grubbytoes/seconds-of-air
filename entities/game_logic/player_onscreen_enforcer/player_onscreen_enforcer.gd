@@ -18,11 +18,17 @@ func _ready():
 
 	timer.wait_time = offscreen_time_allowed
 
+	# exit tree signals to prevent invalid references
+	tree_exiting.connect(screen_notifier.queue_free)
+	screen_notifier.tree_exiting.connect(self.free)
+
 
 func _physics_process(delta):
 	if not char_offscreen:
 		return
-	
+	if is_queued_for_deletion():
+		return
+		
 	arrow_sprite.position.x = char.position.x
 
 
@@ -44,11 +50,6 @@ func char_exited_screen():
 	else:
 		arrow_sprite.play("up")
 		arrow_sprite.position.y = 26
-
-
-# ! JANK!! opens up all sort of problems were we to continue working...!
-# func _exit_tree() -> void:
-# 	screen_notifier.queue_free()
 
 
 func on_timer_timeout() -> void:
