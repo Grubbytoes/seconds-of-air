@@ -110,7 +110,6 @@ func take_hit(damage := 0, knockback := Vector2.ZERO):
 
 
 func kill():
-	print("player is dead lol")
 	var p := packed_death_particles.instantiate() as GPUParticles2D
 	p.position = self.position
 	add_sibling(p)

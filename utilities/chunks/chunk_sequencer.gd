@@ -15,7 +15,6 @@ func next_chunk() -> Chunk:
 	if _next_chest_at == chunk_count:
 		new_chunk = chest_chunk_from_loader()
 		_next_chest_at += randi_range(4, 6)
-		print("created chest chunk!!")
 	else:
 		new_chunk = chunk_from_loader()
 	

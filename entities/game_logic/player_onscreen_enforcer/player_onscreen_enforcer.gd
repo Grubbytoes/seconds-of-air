@@ -33,7 +33,6 @@ func _physics_process(delta):
 
 
 func char_entered_screen():
-	print(" * char entered screen")
 	timer.stop()
 	char_offscreen = false
 	arrow_sprite.visible = false
