@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://bwauwjc58tq80"]
+[gd_scene load_steps=10 format=3 uid="uid://bwauwjc58tq80"]
 
 [ext_resource type="Script" uid="uid://dgnvwkwusoubi" path="res://stages/menus/results_display/results_display.gd" id="1_tjx1t"]
 [ext_resource type="Theme" uid="uid://rojs5goi8lae" path="res://entities/ui/base_theme.tres" id="2_0qsv5"]
@@ -12,6 +12,14 @@ font_size = 64
 font_size = 24
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_0qsv5"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_vbsht"]
+font_size = 24
+font_color = Color(0.988235, 0.937255, 0.552941, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_0vhly"]
+font_size = 24
+font_color = Color(0.988235, 0.937255, 0.552941, 1)
 
 [node name="ResultsDisplay" type="Node2D" node_paths=PackedStringArray("score_label", "time_label", "bonus_label", "final_score_label")]
 script = ExtResource("1_tjx1t")
@@ -86,12 +94,6 @@ size_flags_horizontal = 10
 text = "00:00"
 label_settings = SubResource("LabelSettings_tjx1t")
 
-[node name="Label3" type="Label" parent="Control/VBoxContainer"]
-visible = false
-layout_mode = 2
-size_flags_horizontal = 4
-label_settings = SubResource("LabelSettings_tjx1t")
-
 [node name="HSeparator2" type="HSeparator" parent="Control/VBoxContainer"]
 layout_mode = 2
 theme_override_constants/separation = 16
@@ -110,7 +112,13 @@ label_settings = SubResource("LabelSettings_tjx1t")
 layout_mode = 2
 size_flags_horizontal = 10
 text = "0000"
-label_settings = SubResource("LabelSettings_tjx1t")
+label_settings = SubResource("LabelSettings_vbsht")
+
+[node name="Label3" type="Label" parent="Control/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "BONUSES"
+label_settings = SubResource("LabelSettings_0vhly")
 
 [node name="HSeparator" type="HSeparator" parent="Control/VBoxContainer"]
 layout_mode = 2
