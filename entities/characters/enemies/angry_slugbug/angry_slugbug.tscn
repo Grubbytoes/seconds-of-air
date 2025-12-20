@@ -101,8 +101,8 @@ height = 20.0
 radius = 11.0
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_7p836"]
-radius = 64.0
-height = 160.0
+radius = 100.0
+height = 256.0
 
 [node name="AngrySlugbug" type="CharacterBody2D"]
 collision_layer = 8
@@ -151,4 +151,5 @@ debug_color = Color(0.254902, 0.635294, 0, 0)
 
 [connection signal="body_entered" from="HazardArea" to="." method="on_contact"]
 [connection signal="body_entered" from="ActivationArea" to="." method="activation_area_body_entered"]
+[connection signal="body_exited" from="ActivationArea" to="." method="on_activation_area_body_exited"]
 [connection signal="off_screen_timeout" from="OffScreenTimer" to="." method="queue_free"]

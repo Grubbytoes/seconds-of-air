@@ -56,9 +56,19 @@ func activate_chase(target: Node2D):
 	state = State.CHASE
 
 
+func stop_chase():
+	chase_target = null
+	state = State.BASE
+
+
 func activation_area_body_entered(body: Node2D) -> void:
 	if body.is_in_group("player"):
 		activate_chase(body)
+
+
+func on_activation_area_body_exited(body: Node2D) -> void:
+	if body == chase_target:
+		stop_chase()
 
 
 func end_stun():

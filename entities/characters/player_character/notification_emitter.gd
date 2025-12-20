@@ -24,6 +24,6 @@ func air_notification(s):
 	c.display_number(s)
 
 	if s < 0:
-		c.set_colour(Color.FIREBRICK)
+		c.set_colour(Color.hex(0xcc425eff))
 	else:
-		c.set_colour(Color.FUCHSIA)
+		c.set_colour(Color.hex(0x6d80faff))

@@ -1,0 +1,26 @@
+[gd_scene load_steps=4 format=3 uid="uid://0wjmv2x2tkon"]
+
+[ext_resource type="Texture2D" uid="uid://41dvwr240gca" path="res://media/small_particles.png" id="1_qmxf4"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qkafq"]
+atlas = ExtResource("1_qmxf4")
+region = Rect2(16, 0, 8, 8)
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_2ogj1"]
+lifetime_randomness = 0.4
+particle_flag_disable_z = true
+spread = 180.0
+flatness = 1.0
+initial_velocity_min = 20.0
+initial_velocity_max = 40.0
+gravity = Vector3(0, 0, 0)
+color = Color(0.513726, 0.301961, 0.768627, 1)
+
+[node name="PlayerDeathParticles" type="GPUParticles2D"]
+emitting = false
+amount = 16
+texture = SubResource("AtlasTexture_qkafq")
+lifetime = 2.0
+one_shot = true
+explosiveness = 1.0
+process_material = SubResource("ParticleProcessMaterial_2ogj1")

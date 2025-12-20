@@ -1,5 +1,7 @@
 extends Node2D
 
+signal char_offscreen_timeout
+
 var char_offscreen := false
 
 @export var char: BaseCharacter
@@ -44,9 +46,10 @@ func char_exited_screen():
 		arrow_sprite.position.y = 26
 
 
-func _exit_tree() -> void:
-	screen_notifier.queue_free()
+# ! JANK!! opens up all sort of problems were we to continue working...!
+# func _exit_tree() -> void:
+# 	screen_notifier.queue_free()
 
 
 func on_timer_timeout() -> void:
-	char.kill()
+	char_offscreen_timeout.emit()
