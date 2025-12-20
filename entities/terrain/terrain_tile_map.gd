@@ -40,6 +40,9 @@ func destroy_tile(coords: Vector2) -> bool:
 	# clear cell
 	erase_cell(coords)
 
+	# play sound
+	SoundManager.play_sound("tile_break")
+
 	# TODO make better lol
 	# random drop
 	if randi() % 8 == 0:

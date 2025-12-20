@@ -32,9 +32,12 @@ func hit(normal := Vector2.ZERO):
 
 	if richness <= 0:
 		kill()
+		return
+		
+	SoundManager.play_sound("object_hit")
+	
 
-
-func move(delta : float):
+func move(delta: float):
 	if motion == Vector2.ZERO:
 		return
 	

@@ -26,6 +26,7 @@ func _physics_process(delta):
 # * OVERRIDE
 func on_pickup():
 	GlobalEvents.add_score.emit(get_value())
+	SoundManager.play_sound("gem_pickup")
 	sprite.animation_finished.connect(queue_free, Object.ConnectFlags.CONNECT_ONE_SHOT)
 	sprite.play("pop")
 

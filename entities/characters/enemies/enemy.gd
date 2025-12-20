@@ -15,6 +15,9 @@ func take_hit(damage := 0, knockback := Vector2.ZERO):
 
 	if health == 0:
 		kill()
+		return
+	
+	SoundManager.play_sound("object_hit")
 
 
 ## emits death signal and triggers drop
@@ -26,6 +29,8 @@ func kill():
 	set_collision_mask_value(2, false)
 	death.emit()
 	_alive = false
+
+	SoundManager.play_sound("object_kill")
 
 	for i in range(drop_gems):
 		Gem.drop_random(get_parent(), position, Vector2(50, 0), 2 * PI)

@@ -108,5 +108,9 @@ icon = ExtResource("4_0vhly")
 icon_alignment = 1
 expand_icon = true
 
+[node name="MarginContainer" type="MarginContainer" parent="."]
+offset_right = 40.0
+offset_bottom = 40.0
+
 [connection signal="pressed" from="Control/VBoxContainer/HBoxContainer3/MenuButton" to="." method="on_menu_button_pressed"]
 [connection signal="pressed" from="Control/VBoxContainer/HBoxContainer3/PlayAgainButton" to="." method="on_play_again_button_pressed"]

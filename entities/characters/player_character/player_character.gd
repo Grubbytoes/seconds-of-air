@@ -78,6 +78,9 @@ func shoot():
 	new_projectile.launch(position, _facing_dir * SHOT_VELOCITY, deg_to_rad(10))
 	apply_recoil(-_facing_dir * SHOT_RECOIL_STRENGTH)
 
+	# play sound
+	SoundManager.play_sound("shoot")
+
 	# start cooldown
 	_shot_ready = false
 	shot_timer.start(SHOT_PERIOD)
@@ -102,6 +105,9 @@ func take_hit(damage := 0, knockback := Vector2.ZERO):
 	var t := get_tree().create_timer(.25)
 	t.timeout.connect(func(): _can_move = true)
 
+	# sound
+	SoundManager.play_sound("player_hit")
+
 
 func kill():
 	print("player is dead lol")
@@ -111,6 +117,9 @@ func kill():
 	p.emitting = true
 	queue_free()
 	death.emit()
+
+	# sound
+	SoundManager.play_sound("player_kill")
 
 
 func _shot_timer_timeout():

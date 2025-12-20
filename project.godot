@@ -19,6 +19,7 @@ config/icon="res://media/usussex.png"
 
 DisplayManager="*res://utilities/display_manager.gd"
 GlobalEvents="*res://utilities/global_events.gd"
+SoundManager="*res://utilities/sound_manager/sound_manager.tscn"
 
 [debug]
 
