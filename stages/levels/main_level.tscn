@@ -1,7 +1,8 @@
-[gd_scene load_steps=10 format=4 uid="uid://vm8hq88hq8jr"]
+[gd_scene load_steps=11 format=4 uid="uid://vm8hq88hq8jr"]
 
 [ext_resource type="PackedScene" uid="uid://cgry3l81jcigo" path="res://entities/characters/player_character/player_character.tscn" id="1_acn0u"]
 [ext_resource type="Script" uid="uid://k3udx8siw08h" path="res://stages/levels/main_level.gd" id="1_ierym"]
+[ext_resource type="Texture2D" uid="uid://byux0fs3onmud" path="res://media/controls.png" id="2_g2mln"]
 [ext_resource type="PackedScene" uid="uid://d24iimo65b3gh" path="res://entities/terrain/terrain_tile_map.tscn" id="3_gky2f"]
 [ext_resource type="Script" uid="uid://b3ojbimvxhv1f" path="res://utilities/chunks/chunk_builder.gd" id="5_0uelv"]
 [ext_resource type="PackedScene" uid="uid://bvqtn58j0hpn8" path="res://entities/game_logic/scroller/scroller.tscn" id="5_1auff"]
@@ -12,6 +13,10 @@
 
 [node name="MainLevel" type="Node2D"]
 script = ExtResource("1_ierym")
+
+[node name="Hints" type="Sprite2D" parent="."]
+position = Vector2(272, 80)
+texture = ExtResource("2_g2mln")
 
 [node name="PlayerCharacter" parent="." instance=ExtResource("1_acn0u")]
 position = Vector2(192, 112)
