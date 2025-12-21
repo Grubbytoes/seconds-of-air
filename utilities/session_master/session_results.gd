@@ -14,5 +14,5 @@ func calculate_final_score():
 
     final_score = 0
     final_score += raw_score
-    final_score = floor(final_score * 1.0 + short_time_bonus * 0.1)
-    final_score = floor(final_score * 1.0 * 1.1 ** long_time_bonus)
+    final_score = floor(final_score * (1.0 + short_time_bonus * 0.1))
+    final_score = floor(final_score * (1.1 ** long_time_bonus))

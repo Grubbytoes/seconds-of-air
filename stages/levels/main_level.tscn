@@ -15,7 +15,7 @@
 script = ExtResource("1_ierym")
 
 [node name="Hints" type="Sprite2D" parent="."]
-position = Vector2(272, 80)
+position = Vector2(128, 96)
 texture = ExtResource("2_g2mln")
 
 [node name="PlayerCharacter" parent="." instance=ExtResource("1_acn0u")]

@@ -37,6 +37,8 @@ func take_hit(damage := 0, knockback := Vector2.ZERO):
 	
 	if !is_alive():
 		return
+	elif state == State.STUN:
+		return
 
 	sprite.play("hit")
 	state = State.STUN

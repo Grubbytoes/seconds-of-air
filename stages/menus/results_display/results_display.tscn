@@ -115,10 +115,11 @@ text = "0000"
 label_settings = SubResource("LabelSettings_vbsht")
 
 [node name="Label3" type="Label" parent="Control/VBoxContainer"]
+visible = false
+custom_minimum_size = Vector2(320, 0)
 layout_mode = 2
-size_flags_horizontal = 4
-text = "BONUSES"
 label_settings = SubResource("LabelSettings_0vhly")
+autowrap_mode = 1
 
 [node name="HSeparator" type="HSeparator" parent="Control/VBoxContainer"]
 layout_mode = 2
