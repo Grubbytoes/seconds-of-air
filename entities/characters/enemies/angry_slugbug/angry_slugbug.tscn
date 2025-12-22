@@ -87,6 +87,9 @@ animations = [{
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_boltr")
+}, {
+"duration": 1.0,
+"texture": null
 }],
 "loop": false,
 "name": &"kill",
@@ -117,8 +120,8 @@ metadata/_custom_type_script = "uid://p2yxsjy362o8"
 use_parent_material = true
 position = Vector2(1, 0)
 sprite_frames = SubResource("SpriteFrames_l4y5h")
+animation = &"kill"
 autoplay = "default"
-frame_progress = 0.0326242
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 4)
