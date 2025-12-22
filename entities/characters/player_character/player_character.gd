@@ -27,6 +27,7 @@ var _can_move := true
 
 @onready var shot_timer := $ShotTimer as Timer
 @onready var boundary_collision_timer := $BoundaryCollisionTimer as Timer
+@onready var sprite := $Sprite2D as Sprite2D
 
 @export var crosshair: Node2D
 
