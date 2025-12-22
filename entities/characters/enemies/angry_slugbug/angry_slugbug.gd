@@ -47,6 +47,9 @@ func take_hit(damage := 0, knockback := Vector2.ZERO):
 
 # * OVERRIDE
 func kill():
+	if not _alive:
+		return
+
 	super.kill()
 	# queue_free()
 	sprite.play("kill")

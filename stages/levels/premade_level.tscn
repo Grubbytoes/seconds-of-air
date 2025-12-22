@@ -6,7 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://d24iimo65b3gh" path="res://entities/terrain/terrain_tile_map.tscn" id="3_w46eu"]
 [ext_resource type="PackedScene" uid="uid://cakgg5sj4dcvp" path="res://utilities/session_master/session_master.tscn" id="6_r66gt"]
 [ext_resource type="PackedScene" uid="uid://io75emuhghfk" path="res://entities/ui/hud/hud.tscn" id="7_dd4cx"]
-[ext_resource type="PackedScene" uid="uid://7bb5ec67eq55" path="res://entities/misc_objects/chest/green_chest.tscn" id="7_hx351"]
+[ext_resource type="PackedScene" uid="uid://w5aqwkepan0s" path="res://entities/characters/enemies/angry_slugbug/angry_slugbug.tscn" id="7_hx351"]
 
 [node name="PremadeLevel" type="Node2D"]
 metadata/_edit_lock_ = true
@@ -37,8 +37,8 @@ offset_top = 9.0
 offset_right = -26.0
 offset_bottom = 9.0
 
-[node name="GreenChest" parent="." instance=ExtResource("7_hx351")]
-position = Vector2(194, 138)
+[node name="AngrySlugbug" parent="." instance=ExtResource("7_hx351")]
+position = Vector2(220, 183)
 
 [connection signal="air_update" from="SessionMaster" to="UILayer/HUD" method="update_air"]
 [connection signal="score_update" from="SessionMaster" to="UILayer/HUD" method="update_score"]

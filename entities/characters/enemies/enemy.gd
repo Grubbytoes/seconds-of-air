@@ -13,7 +13,7 @@ func take_hit(damage := 0, knockback := Vector2.ZERO):
 
 	apply_recoil(knockback, true)
 
-	if health == 0:
+	if health <= 0:
 		kill()
 		return
 	
