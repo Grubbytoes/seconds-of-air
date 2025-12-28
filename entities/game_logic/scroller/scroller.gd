@@ -22,6 +22,10 @@ var _scroll_measure := 0.0
 func _ready():
 	camera.enabled = enable_camera
 
+	# ! I sense jank...
+	if char != null:
+		char.tree_exiting.connect(func(): char = null)
+
 
 func _physics_process(delta):
 	if scroll_mode == ScrollMode.HALT:
@@ -32,8 +36,13 @@ func _physics_process(delta):
 		scroll_velocity.y = move_toward(scroll_velocity.y, scroll_speed, scroll_speed * delta)
 
 	position += scroll_velocity * delta
-	char.move_and_collide(scroll_velocity * delta)
+	if char != null:
+		char.move_and_collide(scroll_velocity * delta)
 	foo(scroll_velocity.y * delta)
+
+
+func stop():
+	scroll_mode = ScrollMode.HALT
 
 
 func foo(delta_y):

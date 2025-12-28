@@ -1,11 +1,16 @@
+class_name AirBubble
 extends BaseCollectable
 
+const PACKED_BUBBLE = preload("res://entities/collectables/air_bubble/air_bubble.tscn")
 const AIR_VALUE = 20
 const RISE_VELOCITY = 32
 
 @onready var sprite: AnimatedSprite2D = $Sprite
 
 var _sway_clock = 0.0
+
+func _ready():
+	_sway_clock += randi() % 128
 
 func _physics_process(delta):
 	# TODO incorporate BaseCollectable.move(...)
@@ -17,6 +22,7 @@ func _physics_process(delta):
 # * OVERRIDE
 func on_pickup():
 	GlobalEvents.add_air.emit(AIR_VALUE)
+	SoundManager.play_sound("bubble_pickup")
 	sprite.animation_finished.connect(queue_free, Object.ConnectFlags.CONNECT_ONE_SHOT)
 	sprite.play("pop")
 

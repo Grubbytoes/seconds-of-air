@@ -1,25 +1,28 @@
-[gd_scene load_steps=2 format=3 uid="uid://co2j7kxga8c6x"]
+[gd_scene load_steps=3 format=3 uid="uid://co2j7kxga8c6x"]
 
 [ext_resource type="Script" uid="uid://dwejlils3gjkd" path="res://entities/ui/pickup_notification.gd" id="1_j3ads"]
+[ext_resource type="Theme" uid="uid://rojs5goi8lae" path="res://entities/ui/base_theme.tres" id="2_u8moc"]
 
 [node name="PickupNotification" type="Node2D"]
 z_index = 10
+texture_filter = 1
 script = ExtResource("1_j3ads")
 
 [node name="Label" type="Label" parent="."]
-texture_filter = 2
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -18.0
-offset_top = -7.5
-offset_right = 22.0
-offset_bottom = 15.5
+offset_left = -20.0
+offset_top = -11.5
+offset_right = 20.0
+offset_bottom = 11.5
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 4
+theme = ExtResource("2_u8moc")
+theme_override_font_sizes/font_size = 8
 text = "0000"
 horizontal_alignment = 1
 vertical_alignment = 1

@@ -1,0 +1,67 @@
+[gd_scene load_steps=13 format=3 uid="uid://cev5uhm5nhpdx"]
+
+[ext_resource type="Script" uid="uid://cqiu61cvk7tw1" path="res://utilities/sound_manager/sound_manager.gd" id="1_7i0g5"]
+[ext_resource type="AudioStream" uid="uid://uwynsompeha1" path="res://media/audio/laserShoot.wav" id="2_i0d3i"]
+[ext_resource type="AudioStream" uid="uid://b8aqyrfkuqkcw" path="res://media/audio/pickupCoin.wav" id="3_i0d3i"]
+[ext_resource type="AudioStream" uid="uid://dg4ms7ckj8kqk" path="res://media/audio/explosion.wav" id="4_u26hr"]
+[ext_resource type="AudioStream" uid="uid://cgwtretcnt4wv" path="res://media/audio/enemy_hit.wav" id="5_dxd7g"]
+[ext_resource type="AudioStream" uid="uid://dfh7aug0upk1q" path="res://media/audio/enemy_death.wav" id="6_o7id3"]
+[ext_resource type="AudioStream" uid="uid://dxxhjc4am0yxq" path="res://media/audio/player_hit.wav" id="7_ry6da"]
+[ext_resource type="AudioStream" uid="uid://dbdh2lku444qu" path="res://media/audio/player_death.wav" id="8_0gv03"]
+[ext_resource type="AudioStream" uid="uid://ccfwmjkmwk720" path="res://media/audio/bubble.wav" id="9_0gv03"]
+[ext_resource type="AudioStream" uid="uid://g5u148cbasqx" path="res://media/audio/chestOpen.wav" id="10_r5ayl"]
+[ext_resource type="AudioStream" uid="uid://dnjjcxbmvcvdt" path="res://media/audio/blorp.wav" id="11_qeo3b"]
+[ext_resource type="AudioStream" uid="uid://o4gcgf8kwj78" path="res://media/audio/blip.wav" id="12_512ep"]
+
+[node name="SoundManager" type="Node"]
+script = ExtResource("1_7i0g5")
+
+[node name="Shoot" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_i0d3i")
+volume_db = -5.0
+
+[node name="GemPickup" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_i0d3i")
+volume_db = -5.0
+
+[node name="TileBreak" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_u26hr")
+volume_db = -8.0
+
+[node name="ObjectHit" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_dxd7g")
+volume_db = -5.0
+
+[node name="ObjectKill" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_o7id3")
+volume_db = -5.0
+pitch_scale = 1.2
+
+[node name="PlayerHit" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("7_ry6da")
+volume_db = -5.0
+pitch_scale = 1.2
+
+[node name="PlayerKill" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("8_0gv03")
+volume_db = -5.0
+pitch_scale = 1.2
+
+[node name="BubblePickup" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("9_0gv03")
+volume_db = 0.4
+
+[node name="ChestOpen" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("10_r5ayl")
+volume_db = -4.0
+pitch_scale = 0.6
+
+[node name="OffscreenWarning" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("11_qeo3b")
+volume_db = -4.0
+pitch_scale = 0.8
+
+[node name="TimeWarning" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("12_512ep")
+volume_db = -4.0
+pitch_scale = 1.2

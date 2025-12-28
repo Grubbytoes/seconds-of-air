@@ -2,6 +2,7 @@ extends Stage
 
 
 func on_session_end(results: SessionResults):
-    queue_next_stage("main menu")
-    get_game().cache_results(results)
-    queue_next_stage("results menu")
+	get_game().cache_results(results)
+	var callback = queue_next_stage.bind("results menu")
+	get_tree().create_timer(2).timeout.connect(callback)
+	

@@ -18,6 +18,7 @@ var state := State.BASE
 
 func _ready():
 	stun_timer.timeout.connect(end_stun)
+	death.connect(on_killed)
 
 
 func _physics_process(delta):
@@ -37,18 +38,18 @@ func take_hit(damage := 0, knockback := Vector2.ZERO):
 	
 	if !is_alive():
 		return
+	elif state == State.STUN:
+		return
 
 	sprite.play("hit")
 	state = State.STUN
 	stun_timer.start()
 
 
-# * OVERRIDE
-func kill():
-	super.kill()
-	# queue_free()
+func on_killed():
+	stun_timer.stop()
 	sprite.play("kill")
-	sprite.animation_finished.connect(queue_free, Object.ConnectFlags.CONNECT_ONE_SHOT)
+	get_tree().create_timer(1).timeout.connect(queue_free)
 
 
 func activate_chase(target: Node2D):
@@ -56,9 +57,19 @@ func activate_chase(target: Node2D):
 	state = State.CHASE
 
 
+func stop_chase():
+	chase_target = null
+	state = State.BASE
+
+
 func activation_area_body_entered(body: Node2D) -> void:
 	if body.is_in_group("player"):
 		activate_chase(body)
+
+
+func on_activation_area_body_exited(body: Node2D) -> void:
+	if body == chase_target:
+		stop_chase()
 
 
 func end_stun():

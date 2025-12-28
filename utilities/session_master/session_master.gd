@@ -54,8 +54,12 @@ func tick():
 
 	if 0 >= air:
 		end_game()
+		return
 	else:
 		tick_timer.start(1)
+
+	if air <= 10:
+		SoundManager.play_sound("time_warning")
 
 
 func end_game():
@@ -63,6 +67,8 @@ func end_game():
 
 	results = SessionResults.new()
 
-	results.score = score
+	results.raw_score = score
 	results.time = time
+	results.calculate_final_score()
+	
 	session_ended.emit(results)

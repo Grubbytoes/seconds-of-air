@@ -1,6 +1,14 @@
-[gd_scene load_steps=2 format=3 uid="uid://io75emuhghfk"]
+[gd_scene load_steps=4 format=3 uid="uid://io75emuhghfk"]
 
 [ext_resource type="Script" uid="uid://bcd2h8uxpggyu" path="res://entities/ui/hud/hud.gd" id="1_ahh25"]
+[ext_resource type="LabelSettings" uid="uid://dqfygjmwywq0x" path="res://entities/ui/pixel_font.tres" id="2_un1ev"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_un1ev"]
+bg_color = Color(0.121569, 0.0627451, 0.164706, 0.627451)
+expand_margin_left = 4.0
+expand_margin_top = 4.0
+expand_margin_right = 4.0
+expand_margin_bottom = 4.0
 
 [node name="HUD" type="Control" node_paths=PackedStringArray("air_label", "score_label")]
 layout_mode = 3
@@ -10,25 +18,31 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_ahh25")
-air_label = NodePath("MarginContainer/VBoxContainer/AirLabel")
-score_label = NodePath("MarginContainer/VBoxContainer/ScoreLabel")
+air_label = NodePath("MarginContainer/PanelContainer/VBoxContainer/AirLabel")
+score_label = NodePath("MarginContainer/PanelContainer/VBoxContainer/ScoreLabel")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 0
 offset_right = 40.0
 offset_bottom = 40.0
-theme_override_constants/margin_left = 5
-theme_override_constants/margin_top = 5
-theme_override_constants/margin_right = 5
-theme_override_constants/margin_bottom = 5
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+[node name="PanelContainer" type="PanelContainer" parent="MarginContainer"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_un1ev")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/PanelContainer"]
 layout_mode = 2
 
-[node name="AirLabel" type="Label" parent="MarginContainer/VBoxContainer"]
+[node name="AirLabel" type="Label" parent="MarginContainer/PanelContainer/VBoxContainer"]
 layout_mode = 2
 text = "AIR : 00:00"
+label_settings = ExtResource("2_un1ev")
 
-[node name="ScoreLabel" type="Label" parent="MarginContainer/VBoxContainer"]
+[node name="ScoreLabel" type="Label" parent="MarginContainer/PanelContainer/VBoxContainer"]
 layout_mode = 2
 text = "SCORE : 000000"
+label_settings = ExtResource("2_un1ev")

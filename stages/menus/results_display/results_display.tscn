@@ -1,6 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://bwauwjc58tq80"]
+[gd_scene load_steps=10 format=3 uid="uid://bwauwjc58tq80"]
 
 [ext_resource type="Script" uid="uid://dgnvwkwusoubi" path="res://stages/menus/results_display/results_display.gd" id="1_tjx1t"]
+[ext_resource type="Theme" uid="uid://rojs5goi8lae" path="res://entities/ui/base_theme.tres" id="2_0qsv5"]
+[ext_resource type="Texture2D" uid="uid://v83t4yugfbf" path="res://stages/menus/results_display/home_icon.tres" id="3_vbsht"]
+[ext_resource type="Texture2D" uid="uid://baxv1j8ag2ln4" path="res://stages/menus/results_display/results_icon.tres" id="4_0vhly"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_de46g"]
 font_size = 64
@@ -8,10 +11,22 @@ font_size = 64
 [sub_resource type="LabelSettings" id="LabelSettings_tjx1t"]
 font_size = 24
 
-[node name="ResultsDisplay" type="Node2D" node_paths=PackedStringArray("score_label", "time_label")]
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_0qsv5"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_vbsht"]
+font_size = 24
+font_color = Color(0.988235, 0.937255, 0.552941, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_0vhly"]
+font_size = 24
+font_color = Color(0.988235, 0.937255, 0.552941, 1)
+
+[node name="ResultsDisplay" type="Node2D" node_paths=PackedStringArray("score_label", "time_label", "bonus_label", "final_score_label")]
 script = ExtResource("1_tjx1t")
 score_label = NodePath("Control/VBoxContainer/HBoxContainer/ScoreLabel")
 time_label = NodePath("Control/VBoxContainer/HBoxContainer2/TimeLabel")
+bonus_label = NodePath("Control/VBoxContainer/Label3")
+final_score_label = NodePath("Control/VBoxContainer/HBoxContainer4/FinalScore")
 
 [node name="Control" type="Control" parent="."]
 layout_mode = 3
@@ -20,6 +35,7 @@ anchor_bottom = 1.0
 offset_right = 1152.0
 offset_bottom = 648.0
 grow_vertical = 2
+theme = ExtResource("2_0qsv5")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Control"]
 layout_mode = 1
@@ -35,7 +51,14 @@ offset_bottom = 82.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Label" type="Label" parent="Control/VBoxContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="Control/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 32
+theme_override_constants/margin_top = 32
+theme_override_constants/margin_right = 32
+theme_override_constants/margin_bottom = 32
+
+[node name="Label" type="Label" parent="Control/VBoxContainer/MarginContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
 text = "GAME OVER"
@@ -47,7 +70,7 @@ layout_mode = 2
 [node name="Label2" type="Label" parent="Control/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
-text = "TOTAL SCORE: "
+text = "RAW SCORE: "
 label_settings = SubResource("LabelSettings_tjx1t")
 
 [node name="ScoreLabel" type="Label" parent="Control/VBoxContainer/HBoxContainer"]
@@ -71,18 +94,60 @@ size_flags_horizontal = 10
 text = "00:00"
 label_settings = SubResource("LabelSettings_tjx1t")
 
+[node name="HSeparator2" type="HSeparator" parent="Control/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 16
+theme_override_styles/separator = SubResource("StyleBoxEmpty_0qsv5")
+
+[node name="HBoxContainer4" type="HBoxContainer" parent="Control/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label2" type="Label" parent="Control/VBoxContainer/HBoxContainer4"]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "FINAL SCORE: "
+label_settings = SubResource("LabelSettings_tjx1t")
+
+[node name="FinalScore" type="Label" parent="Control/VBoxContainer/HBoxContainer4"]
+layout_mode = 2
+size_flags_horizontal = 10
+text = "0000"
+label_settings = SubResource("LabelSettings_vbsht")
+
+[node name="Label3" type="Label" parent="Control/VBoxContainer"]
+visible = false
+custom_minimum_size = Vector2(320, 0)
+layout_mode = 2
+label_settings = SubResource("LabelSettings_0vhly")
+autowrap_mode = 1
+
+[node name="HSeparator" type="HSeparator" parent="Control/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 16
+theme_override_styles/separator = SubResource("StyleBoxEmpty_0qsv5")
+
 [node name="HBoxContainer3" type="HBoxContainer" parent="Control/VBoxContainer"]
 layout_mode = 2
 
 [node name="MenuButton" type="Button" parent="Control/VBoxContainer/HBoxContainer3"]
+custom_minimum_size = Vector2(96, 96)
 layout_mode = 2
 size_flags_horizontal = 0
-text = "MENU"
+icon = ExtResource("3_vbsht")
+icon_alignment = 1
+expand_icon = true
 
 [node name="PlayAgainButton" type="Button" parent="Control/VBoxContainer/HBoxContainer3"]
+custom_minimum_size = Vector2(96, 96)
 layout_mode = 2
 size_flags_horizontal = 10
-text = "PLAY AGAIN"
+icon = ExtResource("4_0vhly")
+icon_alignment = 1
+expand_icon = true
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+offset_right = 40.0
+offset_bottom = 40.0
 
 [connection signal="pressed" from="Control/VBoxContainer/HBoxContainer3/MenuButton" to="." method="on_menu_button_pressed"]
 [connection signal="pressed" from="Control/VBoxContainer/HBoxContainer3/PlayAgainButton" to="." method="on_play_again_button_pressed"]

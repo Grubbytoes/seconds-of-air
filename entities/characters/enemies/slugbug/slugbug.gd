@@ -31,7 +31,7 @@ func _physics_process(delta):
 	elif state == State.STUN:
 		pass
 		
-	move_and_slide() 
+	move_and_slide()
 
 
 # * OVERRIDE
@@ -52,6 +52,7 @@ func kill():
 	# queue_free()
 	sprite.play("kill")
 	sprite.animation_finished.connect(queue_free, Object.ConnectFlags.CONNECT_ONE_SHOT)
+	SoundManager.play_sound("object_kill")
 
 
 func end_stun():

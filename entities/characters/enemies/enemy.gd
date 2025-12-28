@@ -13,8 +13,11 @@ func take_hit(damage := 0, knockback := Vector2.ZERO):
 
 	apply_recoil(knockback, true)
 
-	if health == 0:
+	if health <= 0:
 		kill()
+		return
+	
+	SoundManager.play_sound("object_hit")
 
 
 ## emits death signal and triggers drop
@@ -27,11 +30,13 @@ func kill():
 	death.emit()
 	_alive = false
 
+	SoundManager.play_sound("object_kill")
+
 	for i in range(drop_gems):
 		Gem.drop_random(get_parent(), position, Vector2(50, 0), 2 * PI)
 
 
-# TODO wtf is going on here
+# Triggered when a body (the player) enters the enemies hazard zone
 func on_contact(body: Node2D):
 	if !is_alive():
 		return

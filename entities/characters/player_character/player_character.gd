@@ -15,7 +15,8 @@ const SHOT_RECOIL_STRENGTH = 10
 const SHOT_VELOCITY = 350
 const SHOT_PERIOD = 2.0 / 11
 
-static var packed_projectile = preload("res://entities/projectiles/player_projectile/player_projectile.tscn")
+static var packed_death_particles := preload("res://entities/vfx/player_death_particles.tscn")
+static var packed_projectile := preload("res://entities/projectiles/player_projectile/player_projectile.tscn")
 
 var current_state := PlayerState.IDLE
 
@@ -26,6 +27,7 @@ var _can_move := true
 
 @onready var shot_timer := $ShotTimer as Timer
 @onready var boundary_collision_timer := $BoundaryCollisionTimer as Timer
+@onready var sprite := $Sprite2D as Sprite2D
 
 @export var crosshair: Node2D
 
@@ -77,6 +79,9 @@ func shoot():
 	new_projectile.launch(position, _facing_dir * SHOT_VELOCITY, deg_to_rad(10))
 	apply_recoil(-_facing_dir * SHOT_RECOIL_STRENGTH)
 
+	# play sound
+	SoundManager.play_sound("shoot")
+
 	# start cooldown
 	_shot_ready = false
 	shot_timer.start(SHOT_PERIOD)
@@ -101,10 +106,20 @@ func take_hit(damage := 0, knockback := Vector2.ZERO):
 	var t := get_tree().create_timer(.25)
 	t.timeout.connect(func(): _can_move = true)
 
+	# sound
+	SoundManager.play_sound("player_hit")
+
 
 func kill():
-	print("player is dead lol")
+	var p := packed_death_particles.instantiate() as GPUParticles2D
+	p.position = self.position
+	add_sibling(p)
+	p.emitting = true
+	queue_free()
 	death.emit()
+
+	# sound
+	SoundManager.play_sound("player_kill")
 
 
 func _shot_timer_timeout():

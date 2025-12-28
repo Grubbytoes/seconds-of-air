@@ -1,6 +1,5 @@
 extends Node2D
 
-const _PACKED_BUBBLE = preload("res://entities/collectables/air_bubble/air_bubble.tscn")
 
 @onready var timer: Timer = $Timer
 
@@ -10,7 +9,7 @@ func _ready():
 
 
 func spawn_bubble():
-	var new_bubble = _PACKED_BUBBLE.instantiate()
+	var new_bubble = AirBubble.PACKED_BUBBLE.instantiate()
 	new_bubble.position = random_position()
 	add_child(new_bubble)
 

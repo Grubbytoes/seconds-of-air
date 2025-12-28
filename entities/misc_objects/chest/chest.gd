@@ -15,6 +15,7 @@ var _i_timer: Timer
 
 func _ready():
 	_i_timer = Timer.new()
+	_i_timer.wait_time = .3
 	_i_timer.one_shot = true
 
 	add_child(_i_timer)
@@ -35,6 +36,8 @@ func open():
 	anim.play("open")
 	set_collision_layer_value(1, false)
 
+	SoundManager.play_sound("object_hit")
+
 
 func release():
 	var release_motion = Vector2(0, 50)
@@ -46,6 +49,8 @@ func release():
 		release_motion = release_motion.rotated(angle)
 
 	star_particles.restart()
+	
+	SoundManager.play_sound("chest_open")
 
 
 func take_hit(damage := 0, _knockback := Vector2.ZERO):
@@ -53,7 +58,13 @@ func take_hit(damage := 0, _knockback := Vector2.ZERO):
 		return
 
 	health -= damage
-	start_invincibility(1)
+
+	if health <= 0:
+		kill()
+		SoundManager.play_sound("object_kill")
+	else:
+		start_invincibility(1)
+		SoundManager.play_sound("object_hit")
 
 
 func start_invincibility(t := 1):
@@ -66,8 +77,18 @@ func stop_invincibility():
 	_i = false
 	anim.play("RESET")
 
-	if health <= 0:
-		queue_free()
+
+func kill():
+	if randi() % 2:
+		var new_bubble = AirBubble.PACKED_BUBBLE.instantiate()
+		new_bubble.position = self.position + Vector2.LEFT * 16
+		add_sibling(new_bubble)
+	if randi() % 2:
+		var new_bubble = AirBubble.PACKED_BUBBLE.instantiate()
+		new_bubble.position = self.position + Vector2.RIGHT * 16
+		add_sibling(new_bubble)
+	
+	queue_free()
 
 
 static func create_random_chest() -> Chest:
