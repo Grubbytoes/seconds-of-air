@@ -36,7 +36,7 @@ func kill():
 		Gem.drop_random(get_parent(), position, Vector2(50, 0), 2 * PI)
 
 
-# TODO wtf is going on here
+# Triggered when a body (the player) enters the enemies hazard zone
 func on_contact(body: Node2D):
 	if !is_alive():
 		return
