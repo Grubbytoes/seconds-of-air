@@ -1,5 +1,3 @@
 Hello
 
-[Here](https://drive.google.com/file/d/1xwiGOmzAbhVukPlr1ZxDVUHnYrrfIv7f/view?usp=drive_link) is a link to the zipped media files because I haven't got the time to figure out Git LFS
-
-xo <3
+Media files (ignored by default) can be found [here](https://drive.google.com/file/d/1_lbhSqcjevU5S2ckiC7Q7f8PU3PzoM2k/view?usp=sharing).
